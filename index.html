@@ -1,158 +1,1720 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>水泳のメリット紹介サイト</title>
-
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Marble Run Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap">
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f9fdfd;
-    color: #222;
-  }
-
-  header {
-    text-align: center;
-    padding: 40px 20px;
-    background: #00aaff;
-    color: white;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
-
-  header p {
-    font-size: 1.2rem;
-  }
-
-  .section {
-    padding: 60px 20px;
-  }
-
-  .section h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-  }
-
-  /* 横スクロールエリア */
-  .horizontal-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-bottom: 20px;
-  }
-
-  .card {
-    display: inline-block;
-    background: white;
-    width: 280px;
-    margin: 0 12px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    vertical-align: top;
-  }
-
-  .card img {
-    width: 100%;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-
-  .card-content {
-    padding: 16px;
-  }
-
-  .card-content h3 {
-    margin-top: 0;
-    font-size: 1.3rem;
-  }
-
-  .card-content p {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 0.85rem;
-    color: #555;
-  }
+/* Layout: a toy-kit workbench — settings on the left, top and side views in the middle, the 3D preview on the right.
+   A deliberately single, bright look: chunky ink outlines, offset shadows, sky-blue ground. */
+:root{
+  --bg:#DCEFFF; --panel:#FFFFFF; --ink:#1E2A3A; --muted:#4A5A6E; --line:#B7CFE8;
+  --grid:#C9DFF3; --accent:#FF5A3C; --accent-ink:#FFFFFF; --sun:#FFC93C; --teal:#18B3A3;
+  --ok:#18B3A3; --warn:#F2A400; --bad:#D7263D; --gone:#9AABBF;
+  --pla:#FFE8A3; --fx:#8E5CF6;
+  --f-display:"Baloo 2","Nunito",system-ui,sans-serif;
+  --f-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 36px}
+*{box-sizing:border-box}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-bottom:20px}
+.logo{width:44px;height:44px;border-radius:50%;background:var(--accent);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);flex:none;position:relative}
+.logo::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#FFFFFF;top:7px;left:8px;opacity:.85}
+h1{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;margin:0;text-wrap:balance}
+header p{margin:0;color:var(--muted);font-weight:700;font-size:15px;max-width:60ch}
+.app{display:grid;gap:22px;grid-template-columns:300px minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+@media (max-width:1200px){.app{grid-template-columns:300px minmax(0,1fr)}.view3d{grid-column:1/-1}}
+@media (max-width:780px){.app{grid-template-columns:minmax(0,1fr)}h1{font-size:32px}}
+.panel{background:var(--panel);border:3px solid var(--ink);border-radius:22px;box-shadow:5px 5px 0 var(--ink);padding:18px;min-width:0}
+.panel h2{font-family:var(--f-display);font-size:22px;font-weight:800;margin:0 0 10px;line-height:1.2}
+.side{display:flex;flex-direction:column;gap:22px}
+.group{display:flex;flex-direction:column;gap:10px}
+.group+.group{border-top:2px dashed var(--line);padding-top:12px}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px}
+.row label,.row>span:first-child{font-size:14px;font-weight:700}
+.row .unit{font-size:12px;font-weight:800;color:var(--muted);margin-left:5px}
+input[type=number]{width:80px;font-family:var(--f-body);font-weight:800;font-size:14px;padding:6px 8px;border:2px solid var(--ink);border-radius:10px;background:var(--bg);color:var(--ink);text-align:right}
+input[type=number]:disabled{opacity:.55}
+input[type=range]{width:120px;accent-color:var(--accent)}
+.seg{display:flex;border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:#FFFFFF}
+.seg button{border:0;background:transparent;color:var(--ink);font:800 14px var(--f-body);padding:7px 13px;cursor:pointer}
+.seg button+button{border-left:2px solid var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:#FFFFFF}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:2px solid var(--ink);background:#FFFFFF;color:var(--ink);font:800 13px var(--f-body);padding:5px 11px;border-radius:999px;cursor:pointer}
+.chip:hover{background:var(--sun)}
+.check{display:flex;gap:9px;align-items:flex-start;font-size:14px;font-weight:700}
+.check input{accent-color:var(--teal);width:18px;height:18px;margin:2px 0 0;flex:none}
+.btn{font:800 14px var(--f-body);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid var(--ink);background:#FFFFFF;color:var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:hover{background:#F2F8FF}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btns .wide{grid-column:1/-1}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.editors{display:flex;flex-direction:column;gap:22px}
+.canvas-wrap{position:relative;width:100%}
+canvas{display:block;width:100%;touch-action:none;border-radius:16px;border:2px solid var(--ink)}
+#plan{aspect-ratio:1/1;max-width:100%;cursor:crosshair}
+#profile{height:190px;cursor:ns-resize}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;font-weight:700;color:var(--muted);margin-top:10px}
+.legend i{display:inline-block;width:20px;height:7px;border-radius:4px;margin-right:6px;vertical-align:middle;border:1.5px solid var(--ink)}
+.view3d .stage{height:520px;border-radius:18px;overflow:hidden;border:2px solid var(--ink);background:linear-gradient(180deg,#FFFFFF,var(--bg))}
+@media (max-width:780px){.view3d .stage{height:380px}}
+.verdict{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;border:3px solid var(--ink);margin-bottom:14px;background:#FFFFFF}
+.verdict .dot{width:18px;height:18px;border-radius:50%;flex:none;border:2px solid var(--ink)}
+.verdict strong{font-family:var(--f-display);font-weight:800;font-size:21px;line-height:1.2}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:14px 0}
+.stat{background:var(--bg);border-radius:14px;padding:9px 12px}
+.stat span{display:block;font-size:12px;font-weight:700;color:var(--muted)}
+.stat b{font-family:var(--f-display);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.issues{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.issues li{font-size:14px;padding-left:20px;position:relative}
+.issues li::before{content:"";position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);background:var(--c,var(--muted))}
+.sel{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:14px;font-weight:700;margin-top:12px}
+.sel[hidden]{display:none!important}
+.fx{margin-top:12px;padding-top:12px;border-top:2px dashed var(--line);display:flex;flex-direction:column;gap:10px}
+.fx .group{gap:9px}
+.msg{font-size:13px;font-weight:700;color:var(--muted);min-height:1.2em;margin:0}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.toolbar .time{font-family:var(--f-display);font-weight:800;font-size:18px;color:var(--ink);margin-left:auto;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
-</head>
-<body>
 
 <header>
-  <h1>水泳のメリット</h1>
-  <p>からだにもこころにもいいことがいっぱい！</p>
+  <div class="logo" aria-hidden="true"></div>
+  <h1>Marble Run Studio</h1>
+  <p>Set your marble size, draw a track, and get a printable 3D model with supports built in.</p>
 </header>
 
-<section class="section">
-  <h2>なぜ水泳がいいの？</h2>
-  <p style="text-align:center; max-width:720px; margin:auto;">
-    水泳は全身運動であり、関節にやさしく、持久力・筋力・心肺機能をバランスよく鍛えられます。  
-    こどもから大人まで、安全に楽しめるスポーツとして人気です。
-  </p>
-</section>
+<div class="app">
+  <aside class="side">
+    <section class="panel">
+      <h2>Your marble</h2>
+      <div class="group">
+        <div class="row"><label for="d">Diameter</label><span><input id="d" type="number" min="3" max="30" step="0.5" value="16"><span class="unit">mm</span></span></div>
+        <div class="chips" aria-label="Common sizes">
+          <button class="chip" data-d="3">3</button><button class="chip" data-d="6">Steel 6</button><button class="chip" data-d="8">Steel 8</button>
+          <button class="chip" data-d="12.7">12.7</button><button class="chip" data-d="16">Marble 16</button><button class="chip" data-d="25">25</button>
+        </div>
+        <div class="row"><label for="gap">Clearance (each side)</label><span><input id="gap" type="number" min="0.3" max="5" step="0.1" value="1"><span class="unit">mm</span></span></div>
+        <div class="row"><label for="wall">Rail thickness</label><span><input id="wall" type="number" min="1" max="5" step="0.2" value="2"><span class="unit">mm</span></span></div>
+        <p class="hint" id="widthNote"></p>
+      </div>
+    </section>
 
-<section class="section">
-  <h2>主なメリット</h2>
+    <section class="panel">
+      <h2>Base</h2>
+      <div class="group">
+        <div class="row"><span>Shape</span>
+          <div class="seg" role="group" aria-label="Base shape">
+            <button id="shapeCircle" aria-pressed="true">Round</button><button id="shapeSquare" aria-pressed="false">Square</button>
+          </div></div>
+        <div class="row"><label for="size">Size (diameter or side)</label><span><input id="size" type="number" min="40" max="300" step="5" value="140"><span class="unit">mm</span></span></div>
+        <div class="row"><label for="baseT">Base thickness</label><span><input id="baseT" type="number" min="1.5" max="10" step="0.5" value="3"><span class="unit">mm</span></span></div>
+        <div class="row"><label for="bed">Printer build size</label><span><input id="bed" type="number" min="80" max="500" step="1" value="180"><span class="unit">mm</span></span></div>
+        <div class="row"><span>Print in</span>
+          <div class="seg" role="group" aria-label="Number of prints">
+            <button id="parts1" aria-pressed="true">1 piece</button><button id="parts2" aria-pressed="false">2 pieces</button>
+          </div></div>
+        <p class="hint" id="partsNote"></p>
+      </div>
+    </section>
 
-  <div class="horizontal-wrapper">
-    <!-- CARD 1 -->
-    <div class="card">
-      <img src="https://placehold.jp/300x180.png?text=全身運動" alt="全身運動">
-      <div class="card-content">
-        <h3>全身運動になる</h3>
-        <p>水泳は腕・脚・体幹を同時に使うため、バランスよく筋肉を使えます。</p>
+    <section class="panel">
+      <h2>Heights &amp; supports</h2>
+      <div class="group">
+        <label class="check"><input id="auto" type="checkbox" checked> Work out heights automatically</label>
+        <label class="check"><input id="autoStart" type="checkbox" checked> Pick the start height too (the lowest that keeps the track sloping to the end)</label>
+        <div class="row"><label for="startZ">Start height</label><span><input id="startZ" type="number" min="5" max="1000" step="1" value="90"><span class="unit">mm</span></span></div>
+        <div class="row"><label for="slope">Downhill slope</label><span><input id="slope" type="number" min="0" max="60" step="0.5" value="8"><span class="unit">%</span></span></div>
+        <p class="hint">8% drops 8 mm every 100 mm. Dragging a point up or down in the side view turns automatic heights off.</p>
+      </div>
+      <div class="group">
+        <div class="row"><span>Supports</span>
+          <div class="seg" role="group" aria-label="Support style">
+            <button id="supPillars" aria-pressed="true">Pillars</button><button id="supColumn" aria-pressed="false">Center column</button>
+          </div></div>
+        <div class="row" id="colRow" hidden><label for="colD">Column thickness</label><span><input id="colD" type="number" min="6" max="40" step="1" value="14"><span class="unit">mm</span></span></div>
+        <div class="row" id="finRow" hidden><span>Fins</span>
+          <div class="seg" role="group" aria-label="Number of fins">
+            <button data-fins="3" aria-pressed="false">3</button><button data-fins="4" aria-pressed="true">4</button><button data-fins="6" aria-pressed="false">6</button>
+          </div></div>
+        <p class="hint" id="supNote"></p>
+        <div class="row"><label for="pillarGap">Pillar spacing</label><span><input id="pillarGap" type="number" min="10" max="150" step="5" value="35"><span class="unit">mm</span></span></div>
+        <div class="row"><label for="pillarD">Pillar thickness</label><span><input id="pillarD" type="number" min="2" max="15" step="0.5" value="6"><span class="unit">mm</span></span></div>
+        <label class="check"><input id="stops" type="checkbox" checked> Add end stops at both ends</label>
+      </div>
+      <div class="group">
+        <div class="row"><label for="crr">Rolling friction (estimate)</label><input id="crr" type="range" min="0.01" max="0.10" step="0.005" value="0.04"></div>
+        <p class="hint" id="crrNote"></p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Save &amp; export</h2>
+      <div class="btns">
+        <button class="btn sun wide" id="dlStl">Download STL (zip)</button>
+        <button class="btn" id="dlJson">Save design</button>
+        <label class="btn" for="loadJson" style="text-align:center">Open design</label>
+        <input id="loadJson" type="file" accept=".json,application/json" hidden>
+      </div>
+      <p class="msg" id="dlMsg" aria-live="polite"></p>
+    </section>
+  </aside>
+
+  <section class="editors">
+    <div class="panel">
+      <h2>Draw your track</h2>
+      <div class="toolbar">
+        <button class="btn" id="sample">Load example</button>
+        <button class="btn" id="clear">Clear all</button>
+        <button class="btn" id="addLap" hidden>Add a lap around the column</button>
+      </div>
+      <div class="canvas-wrap"><canvas id="plan" aria-label="Top view. Click to add a point, drag to move it."></canvas></div>
+      <p class="hint" style="margin-top:10px">Click empty space to add a point at the end · Click on the track to insert a point · Drag a point to move it · Right-click or press Delete to remove it · Select a point to add a jump or funnel</p>
+      <div class="sel" id="selBox" hidden>
+        <span id="selLabel"></span>
+        <span>Height <input id="selZ" type="number" step="1"><span class="unit">mm</span></span>
+        <button class="btn" id="selDel">Delete point</button>
+      </div>
+      <div class="fx" id="fxBox" hidden>
+        <div class="row"><span>Trick at this point</span>
+          <div class="seg" role="group" aria-label="Trick"><button id="fxNone" aria-pressed="true">None</button><button id="fxJump" aria-pressed="false">Jump</button><button id="fxFunnel" aria-pressed="false">Funnel</button></div></div>
+        <div class="group" id="fxJumpBox" hidden>
+          <p class="hint">The rail breaks between this point and the next, and the marble flies across. Line up the landing point and the one after it straight ahead of the jump. Keep the gap around 10–20 mm; longer gaps need a bigger drop and more speed.</p>
+          <div class="row"><label for="fxRamp">Run-up slope (last stretch before the jump)</label><span><input id="fxRamp" type="number" min="0" max="100" step="1"><span class="unit">%</span></span></div>
+          <p class="hint" id="fxJumpInfo"></p>
+          <div><button class="btn" id="fxFitJump">Match landing height</button></div>
+        </div>
+        <div class="group" id="fxFunnelBox" hidden>
+          <p class="hint">The rail ends here and feeds a funnel. The marble spins around and drops through the center hole onto the next point (or onto the base if this is the last point).</p>
+          <div class="row"><label for="fxR">Funnel radius (inside)</label><span><input id="fxR" type="number" min="8" max="80" step="1"><span class="unit">mm</span></span></div>
+          <div class="row"><label for="fxAng">Bowl angle</label><span><input id="fxAng" type="number" min="4" max="35" step="1"><span class="unit">°</span></span></div>
+          <div class="row"><span>Spin direction</span><div class="seg" role="group" aria-label="Spin direction"><button id="fxLeft" aria-pressed="true">Counter-clockwise</button><button id="fxRight" aria-pressed="false">Clockwise</button></div></div>
+          <div class="row"><label for="fxDrop">Extra gap below (for a 2-piece cut)</label><span><input id="fxDrop" type="number" min="0" max="60" step="1"><span class="unit">mm</span></span></div>
+          <p class="hint" id="fxFunnelInfo"></p>
+        </div>
+        <p class="hint" id="fxNote" style="color:var(--bad)"></p>
       </div>
     </div>
-
-    <!-- CARD 2 -->
-    <div class="card">
-      <img src="https://placehold.jp/300x180.png?text=心肺機能" alt="心肺機能">
-      <div class="card-content">
-        <h3>心肺機能がアップ</h3>
-        <p>あえぎをコントロールする動作が呼吸機能を強化します。</p>
+    <div class="panel">
+      <h2>Side view</h2>
+      <div class="canvas-wrap"><canvas id="profile" aria-label="Side view. Drag points up or down to change their height."></canvas></div>
+      <div class="legend">
+        <span><i style="background:var(--ok)"></i>Rolling well</span>
+        <span><i style="background:var(--warn)"></i>Slowing down or fast in a turn</span>
+        <span><i style="background:var(--bad)"></i>Stops or may fly off</span>
+        <span><i style="background:var(--gone)"></i>Never reached</span>
+        <span><i style="background:var(--fx)"></i>Tricks (dashed line is the jump path)</span>
       </div>
     </div>
+  </section>
 
-    <!-- CARD 3 -->
-    <div class="card">
-      <img src="https://placehold.jp/300x180.png?text=関節にやさしい" alt="関節にやさしい">
-      <div class="card-content">
-        <h3>関節への負担が少ない</h3>
-        <p>水の浮力で重力が軽くなり、膝や腰への負担が減ります。</p>
-      </div>
+  <section class="panel view3d">
+    <h2>3D preview &amp; check</h2>
+    <div id="verdict" class="verdict"><span class="dot"></span><strong></strong></div>
+    <div class="toolbar">
+      <button class="btn primary" id="roll">Roll the marble</button>
+      <button class="btn" id="fit">Fit to view</button>
+      <span class="time" id="clock"></span>
     </div>
+    <div class="stage" id="stage"></div>
+    <div class="stats" id="stats"></div>
+    <ul class="issues" id="issues"></ul>
+    <p class="hint" style="margin-top:12px">The check uses a simple physics model, so treat it as a guide. Real prints vary with friction, layer lines and vibration, so test a short track first. Pillars automatically shift to avoid rails below them. Pillars and rails export as overlapping parts; slicers such as Bambu Studio merge them when printing. Print the underside of the rails with supports.</p>
+  </section>
+</div>
 
-    <!-- CARD 4 -->
-    <div class="card">
-      <img src="https://placehold.jp/300x180.png?text=ストレス解消" alt="ストレス解消">
-      <div class="card-content">
-        <h3>ストレス解消</h3>
-        <p>水の感触やリズミカルな動きが心を落ち着けます。</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+/*CORE-START*/
+const SUB=28; // samples per segment
+const G=9810; // mm/s^2
+const V3=THREE.Vector3;
 
-<section class="section">
-  <h2>はじめてみよう</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    まずはゆっくりとウォーミングアップから！  
-    無理せず、自分のペースで楽しんでください。
-  </p>
-</section>
+const S={d:16,gap:1,wall:2,shape:'circle',size:140,baseT:3,bed:180,parts:1,auto:true,autoStart:true,startZ:90,slope:8,pillarGap:35,pillarD:6,sup:'pillars',colD:14,fins:4,stops:true,crr:0.04,pts:[]};
 
-<footer>
-  &copy; 2026 水泳のメリット紹介サイト
-</footer>
+function samplePts(){
+  const pts=[],n=9;
+  const R0=Math.max(8,S.size/2-Ro()-3), r1=Math.max(R0*0.56,Ro()*1.6);
+  for(let i=0;i<n;i++){const t=i/(n-1),a=-Math.PI*0.55+t*Math.PI*2*1.0,r=R0-(R0-r1)*t;pts.push({x:+(r*Math.cos(a)).toFixed(1),y:+(r*Math.sin(a)).toFixed(1),z:0});}
+  return pts;
+}
 
-</body>
-</html>
+/* ---------- derived dimensions ---------- */
+const rb=()=>S.d/2;
+const Ri=()=>S.d/2+S.gap;
+const Ro=()=>Ri()+S.wall;
+const rimH=()=>Ri()+Math.max(1.5,S.d*0.2); // rim height above floor
+const minZ=()=>S.baseT+S.wall;
+const colMode=()=>S.sup==='column';
+const armT=()=>3, armW=()=>Math.max(3,S.pillarD*0.7), ARM_MAX=90, finT=()=>Math.max(2,Math.min(4,S.pillarD*0.5));
+const maxH=()=>S.bed*(S.parts===2?2:1); // tallest model this setup can print
+const funnelMinR=()=>Math.ceil(Ri()+0.6+Ro()+4);
+const FUNNEL_CLR=1.6; // mm between the lower rail's rim and the funnel's underside
+const funnelTail=F=>F.rh+1.5; // the rail under a funnel starts this far behind the hole center, so its end stop sits clear of the hole
+const funnelDefaultR=()=>Math.max(funnelMinR(),Math.round(Math.max(15,S.d*2+12)));
+
+function baseInset(x,y,m){
+  const half=S.size/2-m;
+  if(half<=0) return {x:0,y:0};
+  if(S.shape==='circle'){const r=Math.hypot(x,y);if(r>half){x*=half/r;y*=half/r;}}
+  else{x=Math.max(-half,Math.min(half,x));y=Math.max(-half,Math.min(half,y));}
+  return {x,y};
+}
+function insideBase(x,y,m){
+  const half=S.size/2-m;
+  return S.shape==='circle'?Math.hypot(x,y)<=half+0.01:(Math.abs(x)<=half+0.01&&Math.abs(y)<=half+0.01);
+}
+function clampAll(){
+  for(const p of S.pts){const w=baseInset(p.x,p.y,Ro()+1);p.x=+w.x.toFixed(1);p.y=+w.y.toFixed(1);}
+}
+
+/* ---------- gimmick rules ---------- */
+function fxProblem(i){
+  const P=S.pts,n=P.length,fx=P[i]&&P[i].fx;
+  if(!fx) return null;
+  if(i<1) return 'The start point can’t have a trick.';
+  if(P[i-1].fx&&P[i-1].fx.type==='jump') return 'A jump’s landing point can’t have a trick. Put it on the next point instead.';
+  if(fx.type==='jump'&&i>n-3) return 'A jump needs at least two more points after it, for the landing rail.';
+  return null;
+}
+const activeFx=i=>(S.pts[i]&&S.pts[i].fx&&!fxProblem(i))?S.pts[i].fx:null;
+
+/* ---------- sampling ---------- */
+function samplePiece(pp){
+  const curve=new THREE.CatmullRomCurve3(pp.map(p=>new V3(p.x,p.y,p.z)),false,'centripetal');
+  const n=(pp.length-1)*SUB, sm=[];
+  let s=0,sh=0;
+  for(let k=0;k<=n;k++){
+    const p=curve.getPoint(k/n);
+    if(k>0){const q=sm[k-1].p;s+=p.distanceTo(q);sh+=Math.hypot(p.x-q.x,p.y-q.y);}
+    sm.push({p,s,sh});
+  }
+  const up=new V3(0,0,1);
+  let prevS=new V3(1,0,0);
+  for(let k=0;k<=n;k++){
+    const a=sm[Math.max(0,k-1)].p,b=sm[Math.min(n,k+1)].p;
+    const T=b.clone().sub(a);
+    if(T.lengthSq()<1e-9)T.set(1,0,0);
+    T.normalize();
+    let Sd=new V3().crossVectors(T,up);
+    if(Sd.lengthSq()<1e-6)Sd=prevS.clone();else Sd.normalize();
+    prevS=Sd;
+    sm[k].T=T;sm[k].S=Sd;sm[k].U=new V3().crossVectors(Sd,T).normalize();
+  }
+  for(let k=0;k<=n;k++){
+    const p0=sm[Math.max(0,k-3)].p,p1=sm[k].p,p2=sm[Math.min(n,k+3)].p;
+    const ax=p1.x-p0.x,ay=p1.y-p0.y,bx=p2.x-p1.x,by=p2.y-p1.y;
+    const la=Math.hypot(ax,ay),lb=Math.hypot(bx,by);
+    let kap=0;
+    if(la>1e-6&&lb>1e-6){
+      let d=Math.atan2(by,bx)-Math.atan2(ay,ax);
+      while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;
+      kap=Math.abs(d)/((la+lb)/2);
+    }
+    sm[k].kappa=kap;
+  }
+  return sm;
+}
+
+function autoPiece(pp,z0,info,lastSlope){
+  const set=(p,z)=>{if(z<minZ()-0.05)info.deficit=Math.max(info.deficit,minZ()-z);p.z=Math.max(minZ(),+z.toFixed(2));};
+  const n=pp.length,ls=lastSlope==null?S.slope:lastSlope;
+  const slopeOf=k=>(k===n-1?ls:S.slope)/100; // slope of the segment ending at point k
+  let z=z0;
+  pp.forEach((p,k)=>{if(k>0){const q=pp[k-1];z-=slopeOf(k)*Math.hypot(p.x-q.x,p.y-q.y);}p.z=z;});
+  const sm=samplePiece(pp);
+  const zs=[z0];
+  for(let k=1;k<n;k++)zs.push(zs[k-1]-slopeOf(k)*(sm[k*SUB].sh-sm[(k-1)*SUB].sh));
+  pp.forEach((p,k)=>{if(k===0&&p.virtual)return;set(p,zs[k]);});
+}
+
+/* ---------- physics ---------- */
+function simRail(sm,kStart,v0){
+  const n=sm.length;
+  const st=new Uint8Array(n),times=new Float64Array(n);
+  let v2=v0*v0,t=0,stopK=-1,maxV=v0,maxPhi=0,flyK=-1,slowLen=0,tight=0,last=kStart;
+  for(let k=kStart;k<n-1;k++){
+    const a=sm[k].p,b=sm[k+1].p,ds=a.distanceTo(b);
+    if(ds<1e-6){times[k+1]=t;last=k+1;continue;}
+    const sin=(a.z-b.z)/ds,cos=Math.sqrt(Math.max(0,1-sin*sin));
+    const acc=5/7*G*(sin-S.crr*cos);
+    const vA=Math.sqrt(v2),nv2=v2+2*acc*ds;
+    if(nv2<=0){stopK=k;break;}
+    const vB=Math.sqrt(nv2);
+    t+=ds/((vA+vB)/2);v2=nv2;times[k+1]=t;last=k+1;
+    if(vB>maxV)maxV=vB;
+    if(acc<0){st[k]=1;slowLen+=ds;}
+    const kap=sm[k].kappa;
+    if(kap>0&&1/kap<Ro()*1.15)tight++;
+    const phi=Math.atan(v2*kap/G)*180/Math.PI;
+    if(phi>maxPhi)maxPhi=phi;
+    if(phi>65){st[k]=2;if(flyK<0)flyK=k;}
+    else if(phi>50&&st[k]<1)st[k]=1;
+  }
+  if(stopK>=0){
+    for(let k=Math.max(kStart,stopK-SUB/2);k<=stopK;k++)st[k]=2;
+    for(let k=stopK+1;k<n;k++)st[k]=3;
+  }
+  return {st,times,stopK,flyK,maxV,maxPhi,slowLen,tight,last,endV:Math.sqrt(v2),kStart};
+}
+
+function idealLandingFloor(take,tgt){
+  const v=take.vel,vh=Math.hypot(v.x,v.y);
+  if(vh<20)return null;
+  const D=((tgt.x-take.pos.x)*v.x+(tgt.y-take.pos.y)*v.y)/vh;
+  if(D<=0)return null;
+  const tt=D/vh;
+  return take.pos.z+v.z*tt-0.5*G*tt*tt-rb()-0.2;
+}
+
+function simJump(take,sm){
+  const pos=take.pos.clone(),vel=take.vel.clone(),r=rb();
+  const path=[{t:0,p:pos.clone()}];
+  const lim=Math.min(sm.length,3*SUB+1);
+  const dirx=vel.x,diry=vel.y,dl=Math.hypot(dirx,diry)||1;
+  let inZone=false,t=0;
+  const res=(o)=>{path.push({t,p:pos.clone()});return Object.assign({path,tEnd:t},o);};
+  if(dl<20)return res({ok:false,reason:'slow'});
+  const dt=0.001;
+  for(let step=0;step<2500;step++){
+    vel.z-=G*dt;pos.addScaledVector(vel,dt);t+=dt;
+    if(step%4===3)path.push({t,p:pos.clone()});
+    let bm=0,bd=1e9;
+    for(let m=0;m<lim;m++){const q=sm[m].p,d=Math.hypot(pos.x-q.x,pos.y-q.y);if(d<bd){bd=d;bm=m;}}
+    const fz=sm[bm].p.z;
+    if(bd<=Ro()+r){
+      if(!inZone){
+        inZone=true;
+        if(pos.z<=fz+rimH()+r*0.5){
+          if(bm<=2&&bd<=Ri()&&pos.z>=fz+r-0.6)return land(bm);
+          return res({ok:false,reason:'wall',k:bm});
+        }
+      }
+      if(pos.z<=fz+r+0.2){
+        if(bd<=Ri())return land(bm);
+        return res({ok:false,reason:'rim',k:bm});
+      }
+    }else inZone=false;
+    if(pos.z<S.baseT+r){
+      const proj=((pos.x-take.pos.x)*dirx+(pos.y-take.pos.y)*diry)/dl;
+      const proj0=((sm[0].p.x-take.pos.x)*dirx+(sm[0].p.y-take.pos.y)*diry)/dl;
+      return res({ok:false,reason:proj<proj0?'short':'over'});
+    }
+  }
+  return res({ok:false,reason:'short'});
+  function land(m){
+    const vT=vel.dot(sm[m].T);
+    pos.z=sm[m].p.z+r;
+    if(vT<5)return res({ok:false,reason:'back',k:m});
+    return res({ok:true,k:m,v0:Math.max(30,vT*0.8),landV:vel.length()});
+  }
+}
+
+function makeFunnel(fx,sm,end){
+  const R=Math.max(funnelMinR(),fx.R||funnelDefaultR());
+  const ang=Math.max(4,Math.min(35,fx.ang||12))*Math.PI/180;
+  const tanA=Math.tan(ang),cosA=Math.cos(ang),tp=S.wall/cosA;
+  const side=fx.dir===-1?-1:1;
+  const tx=end.T.x,ty=end.T.y,tl=Math.hypot(tx,ty)||1;
+  const nx=-ty/tl*side,ny=tx/tl*side;
+  const Rr=R-Ro()-0.5;
+  const C={x:end.p.x+nx*Rr,y:end.p.y+ny*Rr};
+  const rh=Ri()+0.6;
+  const zTop=end.p.z-0.3+(S.wall+0.5)*tanA;
+  const zHole=zTop-(R-rh)*tanA;
+  // floor of the rail below: room for the marble under the hole, and the rail rim kept FUNNEL_CLR under the bowl so it prints as a real gap
+  const exitFloor=zHole-tp-Math.max(S.d+1.5,rimH()+FUNNEL_CLR)-Math.max(0,fx.drop||0);
+  const lipH=Math.max(3,S.d*0.8);
+  const entryAng=Math.atan2(end.p.y-C.y,end.p.x-C.x);
+  // notch in the lip where the incoming rail crosses it
+  const mid=R+S.wall/2,half=Ro()+S.wall/2+0.8;
+  let lo=0,hi=0;
+  for(let k=sm.length-1;k>=Math.max(0,sm.length-1-4*SUB);k--){
+    const q=sm[k].p,d=Math.hypot(q.x-C.x,q.y-C.y);
+    if(d<=mid+half){
+      let a=Math.atan2(q.y-C.y,q.x-C.x)-entryAng;
+      while(a>Math.PI)a-=2*Math.PI;while(a<-Math.PI)a+=2*Math.PI;
+      lo=Math.min(lo,a);hi=Math.max(hi,a);
+    }
+  }
+  const marg=(Ro()+0.8)/R;
+  return {fx,R,ang,tanA,cosA,tp,side,Rr,C,rh,zTop,zHole,exitFloor,lipH,entryAng,notch:[entryAng+lo-marg,entryAng+hi+marg]};
+}
+
+function simFunnel(F,take,dropZ,dropXY){
+  const r=rb(),sinA=F.tanA*F.cosA;
+  const aIn=5/7*G*sinA*F.cosA,aFr=5/7*G*S.crr;
+  let x=take.pos.x-F.C.x,y=take.pos.y-F.C.y,vx=take.vel.x,vy=take.vel.y;
+  const rmax=F.R-r,path=[];
+  const zAt=rr=>F.zHole+(rr-F.rh)*F.tanA+r/F.cosA;
+  let t=0,turn=0,prevA=Math.atan2(y,x);
+  const dt=0.0005;
+  for(let step=0;step<80000;step++){
+    let rr=Math.hypot(x,y);
+    if(rr<F.rh*0.85){
+      const z0=zAt(Math.max(rr,F.rh*0.85)),h=Math.max(0,z0-dropZ),tf=Math.sqrt(2*h/G);
+      const x0=F.C.x+x,y0=F.C.y+y;
+      for(let i=1;i<=6;i++){const f=i/6;path.push({t:t+tf*Math.sqrt(f),p:new V3(x0+(dropXY.x-x0)*f,y0+(dropXY.y-y0)*f,z0-h*f)});}
+      return {ok:true,path,tEnd:t+tf,turns:Math.abs(turn)/(2*Math.PI)};
+    }
+    const ux=x/rr,uy=y/rr,sp=Math.hypot(vx,vy);
+    let ax=-aIn*ux,ay=-aIn*uy;
+    if(sp>1e-3){ax-=aFr*vx/sp;ay-=aFr*vy/sp;}
+    else if(aIn<=aFr)return {ok:false,reason:'stuck',path,tEnd:t};
+    vx+=ax*dt;vy+=ay*dt;x+=vx*dt;y+=vy*dt;t+=dt;
+    rr=Math.hypot(x,y);
+    if(rr>rmax){
+      x*=rmax/rr;y*=rmax/rr;
+      const vr=vx*x/rmax+vy*y/rmax;
+      if(vr>0){vx-=1.3*vr*x/rmax;vy-=1.3*vr*y/rmax;}
+      rr=rmax;
+    }
+    const a=Math.atan2(y,x);let da=a-prevA;
+    while(da>Math.PI)da-=2*Math.PI;while(da<-Math.PI)da+=2*Math.PI;
+    turn+=da;prevA=a;
+    if(step%16===15)path.push({t,p:new V3(F.C.x+x,F.C.y+y,zAt(rr))});
+  }
+  return {ok:false,reason:'stuck',path,tEnd:t};
+}
+
+/* ---------- course ---------- */
+function buildCourse(){
+  const P=S.pts,n=P.length;
+  if(n<2)return null;
+  const C={pieces:[],jumps:[],funnels:[],timeline:[],fail:null,info:{deficit:0},railLen:0};
+  let a=0,virt=null,incoming={type:'start'},t=0,z0=S.startZ,offset=0,dead=false;
+  const deadSim=n=>({st:new Uint8Array(n).fill(3),times:new Float64Array(n),stopK:-1,flyK:-1,maxV:0,maxPhi:0,slowLen:0,tight:0,last:0,endV:0,unreached:true});
+  const pushTL=(tt,p)=>C.timeline.push({t:tt,p});
+  while(a<n){
+    let j=a;
+    while(j<n-1){if(activeFx(j)&&(virt||j>a))break;j++;}
+    const pp=[],gidx=[];
+    if(virt)for(const v of virt){pp.push(v);gidx.push(-1);}
+    for(let k=a;k<=j;k++){pp.push(P[k]);gidx.push(k);}
+    if(pp.length<2){C.fail={type:'short'};break;}
+    const endFx=activeFx(j);
+    if(S.auto)autoPiece(pp,virt?virt[0].z:z0,C.info,endFx&&endFx.type==='jump'&&pp.length>=2?(endFx.ramp!=null?endFx.ramp:25):null);
+    const sm=samplePiece(pp);
+    const piece={pp,gidx,sm,offset,kStart:0,sim:null,distBefore:C.railLen};
+    C.pieces.push(piece);
+    C.railLen+=sm[sm.length-1].s;
+    let v0=30,kStart=0;
+    if(dead){
+      if(incoming.type==='jump'){const J=incoming.ev;piece.offset=J.offEnd+Math.hypot(sm[0].p.x-J.take.pos.x,sm[0].p.y-J.take.pos.y);}
+      else if(incoming.type==='funnel'){piece.fromF=incoming.F;piece.offset=incoming.offset-sm[incoming.k0].sh;}
+    }else if(incoming.type==='jump'){
+      const J=incoming.ev,r=simJump(J.take,sm);
+      J.result=r;
+      const dl=Math.hypot(J.take.vel.x,J.take.vel.y)||1;
+      const proj=p=>((p.x-J.take.pos.x)*J.take.vel.x+(p.y-J.take.pos.y)*J.take.vel.y)/dl;
+      J.flightX=r.path.map(q=>({x:J.offEnd+proj(q.p),z:q.p.z}));
+      for(const q of r.path)pushTL(t+q.t,q.p);
+      if(!r.ok){
+        piece.offset=J.offEnd+Math.hypot(sm[0].p.x-J.take.pos.x,sm[0].p.y-J.take.pos.y);
+        C.fail={type:'jump',reason:r.reason,ev:J};dead=true;
+      }else{
+        kStart=r.k;v0=r.v0;t+=r.tEnd;
+        piece.offset=J.offEnd+proj(sm[kStart].p)-sm[kStart].sh;
+      }
+    }else if(incoming.type==='funnel'){v0=incoming.v0;kStart=incoming.k0;piece.fromF=incoming.F;piece.offset=incoming.offset-sm[kStart].sh;}
+    piece.kStart=kStart;
+    const r=rb();
+    let sim;
+    if(dead)sim=deadSim(sm.length);
+    else{
+      sim=simRail(sm,kStart,v0);
+      for(let k=0;k<kStart;k++)sim.st[k]=0;
+      for(let k=kStart;k<=sim.last;k++)pushTL(t+sim.times[k],sm[k].p.clone().addScaledVector(sm[k].U,r));
+      t+=sim.times[sim.last];
+      if(sim.stopK>=0){C.fail={type:'stop',piece,k:sim.stopK};dead=true;}
+    }
+    piece.sim=sim;
+    const fx=activeFx(j);
+    if(!fx||(!virt&&j===a))break;
+    const end=sm[sm.length-1];
+    const take={pos:end.p.clone().addScaledVector(end.U,r),vel:end.T.clone().multiplyScalar(sim.endV)};
+    const offEnd=piece.offset+end.sh;
+    if(fx.type==='jump'){
+      const L1=P[j+1];
+      // aim at the landing rail itself, a little past its start
+      const flat=P.slice(j+1,Math.min(n,j+4)).map(q=>({x:q.x,y:q.y,z:0}));
+      const lsm=samplePiece(flat),want=Ro()+1.5;
+      let tk=0;while(tk<lsm.length-1&&lsm[tk].s<want)tk++;
+      const tgt={x:lsm[tk].p.x,y:lsm[tk].p.y};
+      const ev={i:j,take,offEnd,tgt,dead,idealZ:dead?null:idealLandingFloor(take,tgt),speed:sim.endV,gap:Math.hypot(L1.x-end.p.x,L1.y-end.p.y)};
+      const vh=Math.hypot(take.vel.x,take.vel.y);
+      ev.lateral=vh>1?Math.abs((tgt.x-take.pos.x)*take.vel.y-(tgt.y-take.pos.y)*take.vel.x)/vh:0;
+      C.jumps.push(ev);
+      incoming={type:'jump',ev};
+      z0=ev.idealZ!=null?ev.idealZ:P[j].z-10;
+      virt=null;a=j+1;
+    }else{
+      const F=makeFunnel(fx,sm,end);F.i=j;F.offEnd=offEnd;
+      C.funnels.push(F);
+      const last=j===n-1;
+      let exitZ=F.exitFloor;
+      if(!last&&exitZ<minZ()){C.info.deficit=Math.max(C.info.deficit,minZ()-exitZ);F.tooLow=true;exitZ=minZ();}
+      F.exitZ=exitZ;
+      // the rail under the hole starts a little behind it (tail), so its end stop can't block the drop
+      let ux=0,uy=0;
+      if(!last){const q=P[j+1];ux=q.x-F.C.x;uy=q.y-F.C.y;}
+      let ul=Math.hypot(ux,uy);
+      if(ul<1e-6){ux=Math.cos(F.entryAng);uy=Math.sin(F.entryAng);ul=1;}
+      ux/=ul;uy/=ul;
+      const tail=funnelTail(F),underZ=exitZ-S.slope/100*tail;
+      F.tail=tail;
+      const dropZ=last?S.baseT+r:underZ+r;
+      if(!dead){
+        const fr=simFunnel(F,take,dropZ,F.C);
+        F.result=fr;
+        for(const q of fr.path)pushTL(t+q.t,q.p);
+        if(!fr.ok){C.fail={type:'funnel',reason:fr.reason,F};dead=true;}
+        else t+=fr.tEnd;
+      }
+      if(last)break;
+      virt=[{x:F.C.x-ux*tail,y:F.C.y-uy*tail,z:exitZ,virtual:true},{x:F.C.x,y:F.C.y,z:underZ,virtual:true}];
+      incoming={type:'funnel',v0:40,offset:offEnd+F.Rr,F,k0:SUB};
+      a=j+1;
+    }
+  }
+  C.tEnd=t;
+  return C;
+}
+/*CORE-END*/
+
+/* ---------- geometry ---------- */
+function trackProfile(){
+  const ri=Ri(),ro=Ro(),h=rimH(),N=18,pts=[];
+  pts.push([-ri,h]);
+  for(let i=0;i<=N;i++){const a=Math.PI+Math.PI*i/N;pts.push([ri*Math.cos(a),ri+ri*Math.sin(a)]);}
+  pts.push([ri,h]);pts.push([ro,h]);
+  for(let i=0;i<=N;i++){const a=2*Math.PI-Math.PI*i/N;pts.push([ro*Math.cos(a),ri+ro*Math.sin(a)]);}
+  pts.push([-ro,h]);
+  return ccw(dedupe(pts));
+}
+function dedupe(pts){const out=[];for(const p of pts){const q=out[out.length-1];if(!q||Math.hypot(p[0]-q[0],p[1]-q[1])>1e-6)out.push(p);}return out;}
+function ccw(pts){let area=0;for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];area+=a[0]*b[1]-b[0]*a[1];}if(area<0)pts.reverse();return pts;}
+function capTriangles(prof){
+  const tris=THREE.ShapeUtils.triangulateShape(prof.map(p=>new THREE.Vector2(p[0],p[1])),[]);
+  return tris.map(([a,b,c])=>{const A=prof[a],B=prof[b],C=prof[c];return (B[0]-A[0])*(C[1]-A[1])-(C[0]-A[0])*(B[1]-A[1])<0?[a,c,b]:[a,b,c];});
+}
+// generic: rings of profile points; ring k, profile j. Profile CCW in (side,up) with travel along ring index.
+function ringsToGeometry(rings,prof,closedLoop,colors){
+  const K=rings.length,J=prof.length;
+  const caps=closedLoop?[]:capTriangles(prof);
+  const total=K*J+(closedLoop?0:2*J);
+  const pos=new Float32Array(total*3),col=colors?new Float32Array(total*3):null;
+  for(let k=0;k<K;k++)for(let j=0;j<J;j++){
+    const o=(k*J+j)*3,v=rings[k][j];pos[o]=v.x;pos[o+1]=v.y;pos[o+2]=v.z;
+    if(col){const c=colors[k];col[o]=c.r;col[o+1]=c.g;col[o+2]=c.b;}
+  }
+  const idx=[];
+  const kMax=closedLoop?K:K-1;
+  for(let k=0;k<kMax;k++){const k2=(k+1)%K;for(let j=0;j<J;j++){const j2=(j+1)%J,a=k*J+j,b=k2*J+j,c=k*J+j2,d=k2*J+j2;idx.push(a,b,c,b,d,c);}}
+  if(!closedLoop){
+    const c0=K*J,c1=K*J+J;
+    for(let j=0;j<J;j++)for(const [dst,src] of [[c0+j,j],[c1+j,(K-1)*J+j]]){
+      for(let q=0;q<3;q++){pos[dst*3+q]=pos[src*3+q];if(col)col[dst*3+q]=col[src*3+q];}
+    }
+    for(const [a,b,c] of caps){idx.push(c0+a,c0+b,c0+c);idx.push(c1+a,c1+c,c1+b);}
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  if(col)g.setAttribute('color',new THREE.BufferAttribute(col,3));
+  g.setIndex(idx);
+  if(signedVolume(g)<0)flip(g);
+  g.computeVertexNormals();
+  return g;
+}
+function trackGeometry(sm,colors){
+  const prof=trackProfile();
+  const rings=sm.map(s=>prof.map(([u,v])=>s.p.clone().addScaledVector(s.S,u).addScaledVector(s.U,v)));
+  return ringsToGeometry(rings,prof,false,colors);
+}
+// revolve a (r,z) profile around vertical axis at C, from th0 to th1 (th1>th0)
+function revolve(prof,C,th0,th1,segs,full){
+  prof=ccw(prof.slice());
+  const K=full?segs:segs+1,rings=[];
+  for(let k=0;k<K;k++){
+    const th=th0+(th1-th0)*k/segs,c=Math.cos(th),s=Math.sin(th);
+    rings.push(prof.map(([r,z])=>new V3(C.x+r*c,C.y+r*s,z)));
+  }
+  return ringsToGeometry(rings,prof,full,null);
+}
+function signedVolume(g){
+  const p=g.attributes.position.array,ix=g.index.array;let v=0;
+  for(let i=0;i<ix.length;i+=3){
+    const a=ix[i]*3,b=ix[i+1]*3,c=ix[i+2]*3;
+    v+=p[a]*(p[b+1]*p[c+2]-p[b+2]*p[c+1])-p[a+1]*(p[b]*p[c+2]-p[b+2]*p[c])+p[a+2]*(p[b]*p[c+1]-p[b+1]*p[c]);
+  }
+  return v/6;
+}
+function flip(g){const ix=g.index.array;for(let i=0;i<ix.length;i+=3){const t=ix[i+1];ix[i+1]=ix[i+2];ix[i+2]=t;}g.index.needsUpdate=true;}
+
+function stopWall(s,dir){
+  const ro=Ro(),h=rimH(),th=2;
+  const g=new THREE.BoxGeometry(2*ro,h+S.wall,th);
+  const m=new THREE.Matrix4().makeBasis(s.S,s.U,s.T.clone().multiplyScalar(-1));
+  m.setPosition(s.p.clone().addScaledVector(s.U,(h-S.wall)/2).addScaledVector(s.T,dir*th/2));
+  g.applyMatrix4(m);
+  return g;
+}
+function funnelGeoms(F){
+  const t=S.wall;
+  const cone=[[F.rh,F.zHole],[F.rh,F.zHole-F.tp],[F.R+t,F.zTop-F.tp+t*F.tanA],[F.R+t,F.zTop],[F.R,F.zTop]];
+  const g1=revolve(cone,F.C,0,Math.PI*2,96,true);
+  const lip=[[F.R,F.zTop-0.4],[F.R+t,F.zTop-0.4],[F.R+t,F.zTop+F.lipH],[F.R,F.zTop+F.lipH]];
+  const a0=F.notch[1],a1=F.notch[0]+Math.PI*2;
+  const out=[g1];
+  if(a1-a0>0.2)out.push(revolve(lip,F.C,a0,a1,Math.max(8,Math.round((a1-a0)/(Math.PI*2)*96)),false));
+  return out;
+}
+function cylGeom(q){
+  if(q.fin)return finGeom(q);
+  const r=q.r||S.pillarD/2,g=new THREE.CylinderGeometry(r,r,q.h,q.col?48:24);
+  g.rotateX(Math.PI/2);g.translate(q.x,q.y,q.bot+q.h/2);return g;
+}
+function baseGeom(){
+  let g;
+  if(S.shape==='circle'){g=new THREE.CylinderGeometry(S.size/2,S.size/2,S.baseT,96);g.rotateX(Math.PI/2);}
+  else g=new THREE.BoxGeometry(S.size,S.size,S.baseT);
+  g.translate(0,0,S.baseT/2);
+  return g;
+}
+/* ---------- supports: pillars that avoid whatever is below ---------- */
+// is anything (another rail or a funnel) inside a vertical cylinder at x,y between bot and top?
+function blocked(C,x,y,bot,top,rad,self){
+  const ro=Ro(),reach=rad+ro+0.4;
+  for(let pi=0;pi<C.pieces.length;pi++){
+    const sm=C.pieces[pi].sm;
+    for(let k=0;k<sm.length;k+=2){
+      const s=sm[k];
+      if(self.pi===pi&&Math.abs(s.s-self.s)<ro*2+rad+2)continue;
+      if(Math.hypot(s.p.x-x,s.p.y-y)>=reach)continue;
+      const lo=s.p.z-S.wall-0.3,hi=s.p.z+rimH()+0.3;
+      if(hi>bot+0.6&&lo<top-0.6)return true;
+    }
+  }
+  for(const F of C.funnels){
+    if(self.F===F)continue;
+    if(Math.hypot(F.C.x-x,F.C.y-y)>=F.R+S.wall+rad+0.4)continue;
+    if(F.zTop+F.lipH>bot+0.6&&F.zHole-F.tp<top-0.6)return true;
+  }
+  return false;
+}
+// flat list of rail samples for the arm checks
+function railSamples(C){
+  if(C._samp)return C._samp;
+  const out=[];
+  C.pieces.forEach((pc,pi)=>{for(let k=0;k<pc.sm.length;k+=2){const s=pc.sm[k];out.push({pi,s:s.s,x:s.p.x,y:s.p.y,z:s.p.z});}});
+  return C._samp=out;
+}
+// a horizontal arm from the center column out to (x,y), its top at `top`. null if it would hit a rail, a ball path or a funnel
+function armTo(C,x,y,top,self){
+  const cr=S.colD/2,L=Math.hypot(x,y);
+  if(L<cr+1||L-cr>ARM_MAX)return null;
+  const bot=top-armT();
+  if(bot<S.baseT+1)return null;
+  const ux=x/L,uy=y/L,w=armW()/2,ro=Ro(),need=Math.max(rimH(),S.d+1),endT=L-(self.F?0:ro);
+  const samp=railSamples(C);
+  for(let t=cr;t<=endT;t+=2){
+    const px=ux*t,py=uy*t;
+    for(const q of samp){
+      if(q.z-S.wall-0.3>top||q.z+need+0.3<bot)continue;
+      if(self.pi===q.pi&&Math.abs(q.s-self.s)<ro*2+w*2+2)continue;
+      if(Math.hypot(q.x-px,q.y-py)<w+ro+0.3)return null;
+    }
+    for(const F of C.funnels){
+      if(self.F===F)continue;
+      if(Math.hypot(F.C.x-px,F.C.y-py)>=F.R+S.wall+w)continue;
+      if(F.zTop+F.lipH+need>bot&&F.zHole-F.tp<top)return null;
+    }
+  }
+  return {arm:true,x,y,top,bot};
+}
+/* fins: a few thin vertical walls from the column out to the inside edge of every lap.
+   Each fin is a stack of slabs; a slab's outer edge stops just inside the nearest rail at that height, so the ball never touches it. */
+function buildFins(C){
+  const fins=[];C.finHits=C.pieces.map(()=>[]);
+  const cr=S.colD/2,ri=Ri(),need=Math.max(rimH(),S.d+1),nF=[3,4,6].includes(S.fins)?S.fins:4;
+  for(let f=0;f<nF;f++){
+    const th=-Math.PI/2+f*Math.PI*2/nF,ux=Math.cos(th),uy=Math.sin(th),cross=[];
+    C.pieces.forEach((pc,pi)=>{
+      const sm=pc.sm;
+      for(let k=0;k<sm.length-1;k++){
+        const a=sm[k].p,b=sm[k+1].p;
+        const ca=ux*a.y-uy*a.x,cb=ux*b.y-uy*b.x;
+        if((ca>0)===(cb>0)||ca===cb)continue;
+        const t=ca/(ca-cb),x=a.x+(b.x-a.x)*t,y=a.y+(b.y-a.y)*t;
+        const r=x*ux+y*uy;if(r<=cr)continue;
+        const z=a.z+(b.z-a.z)*t,sAt=sm[k].s+(sm[k+1].s-sm[k].s)*t;
+        cross.push({pi,r,z,s:sAt});
+      }
+    });
+    if(!cross.length)continue;
+    cross.sort((a,b)=>a.z-b.z);
+    // funnels and ball drops this fin would run into: [zlo,zhi,maxOuter]
+    const stops=[];
+    for(const F of C.funnels){
+      const along=F.C.x*ux+F.C.y*uy,off=Math.abs(F.C.y*ux-F.C.x*uy),R=F.R+S.wall+finT()/2+0.5;
+      if(off>=R||along+Math.sqrt(R*R-off*off)<cr)continue;
+      const lo=(F.exitZ!=null?F.exitZ:S.baseT)-0.5,hi=F.zTop+F.lipH+need;
+      stops.push([lo,hi,along-Math.sqrt(R*R-off*off)]);
+    }
+    const marks=[...new Set([S.baseT-0.4,...cross.map(c=>c.z-S.wall),cross[cross.length-1].z+rimH()-0.2])].sort((a,b)=>a-b);
+    const slabs=[];
+    for(let i=0;i<marks.length-1;i++){
+      const za=marks[i],zb=marks[i+1];if(zb-za<0.05)continue;
+      let outer=Infinity;
+      for(const c of cross)if(c.z-S.wall-0.3<zb-0.05&&c.z+need+0.3>za+0.05)outer=Math.min(outer,c.r-ri-0.3);
+      if(outer===Infinity){const up=cross.find(c=>c.z-S.wall>=zb-0.01);if(!up)continue;outer=up.r-ri-0.3;}
+      for(const [lo,hi,m] of stops)if(lo<zb&&hi>za)outer=Math.min(outer,m);
+      if(outer<cr+2)continue;
+      const last=slabs[slabs.length-1];
+      if(last&&Math.abs(last.outer-outer)<0.05&&Math.abs(last.top-za)<0.01)last.top=zb;
+      else slabs.push({bot:za,top:zb,outer});
+    }
+    if(!slabs.length)continue;
+    // a crossing counts as held when a slab reaches that rail at its height
+    for(const c of cross)if(slabs.some(q=>q.bot<=c.z-S.wall+0.01&&q.top>=c.z-S.wall-0.01&&q.outer>=c.r-ri-0.35))C.finHits[c.pi].push(c.s);
+    for(const q of slabs)fins.push({fin:true,th,ux,uy,bot:q.bot,top:q.top,outer:q.outer});
+  }
+  for(const h of C.finHits)h.sort((a,b)=>a-b);
+  return fins;
+}
+function finGeom(q){
+  const cr=S.colD/2-0.5,L=q.outer-cr,g=new THREE.BoxGeometry(L,finT(),q.top-q.bot);
+  g.rotateZ(q.th);g.translate(q.ux*(cr+L/2),q.uy*(cr+L/2),(q.bot+q.top)/2);
+  return g;
+}
+function armGeom(A){
+  const L=Math.hypot(A.x,A.y),g=new THREE.BoxGeometry(L,armW(),A.top-A.bot);
+  g.rotateZ(Math.atan2(A.y,A.x));g.translate(A.x/2,A.y/2,(A.top+A.bot)/2);
+  g.userData.arm=true;
+  return g;
+}
+function railPillars(C,pi){
+  const sm=C.pieces[pi].sm,n=sm.length,list=[],total=sm[n-1].s,rad=S.pillarD/2;
+  if(total<1)return list;
+  const inset=Math.min(4,total/4),gap=Math.max(10,S.pillarGap),inner=total-2*inset;
+  const cnt=Math.max(1,Math.round(inner/gap)),marks=[];
+  for(let i=0;i<=cnt;i++)marks.push(inset+inner*i/cnt);
+  const kAt=s=>{let lo=0,hi=n-1;while(hi-lo>1){const m=(lo+hi)>>1;if(sm[m].s<s)lo=m;else hi=m;}return hi;};
+  // a spot needs its own support only if the fins on either side are too far apart
+  const hits=C.finHits&&C.finHits[pi]||[],span=Math.max(gap*1.8,gap+20);
+  const nearFin=s=>{if(!hits.length)return false;if(hits.some(h=>Math.abs(h-s)<gap*0.6))return true;
+    for(let i=0;i<hits.length-1;i++)if(hits[i]<=s&&s<=hits[i+1])return hits[i+1]-hits[i]<=span;return false;};
+  for(const s0 of marks){
+    if(colMode()&&nearFin(s0)){list.push({ground:true,fin:true,s:s0,pi});continue;}
+    let placed=null;
+    for(let step=0;step<=Math.ceil(gap*0.45/3)*2&&!placed;step++){
+      const off=(step%2?1:-1)*Math.ceil(step/2)*3,s=s0+off;
+      if(s<inset-0.01||s>total-inset+0.01)continue;
+      const k=kAt(s),p=sm[k].p,top=p.z-S.wall+0.6,bot=S.baseT-0.4,h=top-bot;
+      if(h<1.5){placed={ground:true,s};break;}
+      if(!blocked(C,p.x,p.y,bot,top,rad,{pi,s:sm[k].s})&&!(colMode()&&Math.hypot(p.x,p.y)<S.colD/2+rad+0.5))placed={x:p.x,y:p.y,bot,top,h,k,pi,s:sm[k].s};
+      else if(colMode()){const A=armTo(C,p.x,p.y,p.z-S.wall+Math.min(1,S.wall*0.6),{pi,s:sm[k].s});if(A){A.pi=pi;A.k=k;A.s=sm[k].s;placed=A;}}
+    }
+    if(placed&&!placed.ground)list.push(placed);//arms included
+    else if(placed&&placed.ground)list.push({ground:true,s:placed.s,pi});
+  }
+  return list;
+}
+function funnelLegs(C,F,outAng){
+  const rp=F.rh+(F.R-F.rh)*0.62,rad=S.pillarD/2,list=[];
+  const top=F.zHole-F.tp+(rp-F.rh)*F.tanA+0.6,bot=S.baseT-0.4,h=top-bot;
+  if(h<=1.5)return list;
+  const used=[];
+  for(const off of [Math.PI/3,Math.PI,5*Math.PI/3]){
+    for(let step=0;step<=10;step++){
+      const a=outAng+off+(step%2?1:-1)*Math.ceil(step/2)*(Math.PI/18);
+      if(used.some(u=>Math.abs(Math.atan2(Math.sin(a-u),Math.cos(a-u)))<Math.PI/4))continue;
+      const x=F.C.x+rp*Math.cos(a),y=F.C.y+rp*Math.sin(a);
+      if(!blocked(C,x,y,bot,top,rad,{F})){list.push({x,y,bot,top,h,F});used.push(a);break;}
+    }
+  }
+  F.legsMissing=3-list.length;
+  return list;
+}
+function allPillars(C){
+  const list=[];
+  C.longSpans=[];C.arms=[];C.column=null;C.fins=[];C.finHits=null;
+  if(colMode())C.fins=buildFins(C);
+  C.pieces.forEach((pc,pi)=>{
+    const ps=railPillars(C,pi);
+    const total=pc.sm[pc.sm.length-1].s,gap=Math.max(10,S.pillarGap);
+    const ss=[...ps.filter(q=>!q.fin).map(q=>q.s),...(C.finHits?C.finHits[pi]:[])].sort((a,b)=>a-b);
+    // ends hang free unless held by a pillar, the ground, a funnel or a jump landing edge
+    let prev=0,maxSpan=0;
+    for(const s of ss){maxSpan=Math.max(maxSpan,s-prev);prev=s;}
+    maxSpan=Math.max(maxSpan,total-prev);
+    if(maxSpan>Math.max(gap*1.8,gap+20))C.longSpans.push({pi,len:maxSpan});
+    for(const q of ps){if(q.ground||q.fin)continue;if(q.arm)C.arms.push(q);else list.push(q);}
+  });
+  C.funnels.forEach(F=>{
+    const next=C.pieces.find(pc=>pc.fromF===F);
+    let outAng=F.entryAng;
+    if(next){const q=next.sm[Math.min(next.sm.length-1,next.kStart+SUB)].p;outAng=Math.atan2(q.y-F.C.y,q.x-F.C.x);}
+    const legs=funnelLegs(C,F,outAng);
+    for(const q of legs)list.push(q);
+    if(colMode()&&F.legsMissing){
+      // two arms from the column to the underside of the bowl
+      const toC=Math.atan2(-F.C.y,-F.C.x),rp=F.rh+(F.R-F.rh)*0.75;let got=0;
+      for(const off of [-0.55,0.55]){
+        const a=toC+off,x=F.C.x+rp*Math.cos(a),y=F.C.y+rp*Math.sin(a);
+        const A=armTo(C,x,y,F.zHole-F.tp+(rp-F.rh)*F.tanA+0.6,{F});
+        if(A){A.F=F;C.arms.push(A);got++;}
+      }
+      if(got)F.legsMissing=0;
+    }
+  });
+  for(const q of C.fins)list.push(q);
+  if(colMode()&&(C.arms.length||C.fins.length)){
+    const top=Math.max(...C.arms.map(a=>a.top),...C.fins.map(q=>q.top)),bot=S.baseT-0.4;
+    C.column={x:0,y:0,bot,top,h:top-bot,r:S.colD/2,col:true};
+    list.push(C.column);
+  }
+  if(colMode()){
+    const cr=S.colD/2+Ro()+0.3;
+    C.colHit=C.pieces.some(pc=>pc.sm.some(s=>Math.hypot(s.p.x,s.p.y)<cr))||C.funnels.some(F=>Math.hypot(F.C.x,F.C.y)<F.R+S.wall+S.colD/2);
+  }
+  return list;
+}
+// rails stacked too close for the ball to pass, or rails cutting through a funnel
+function findClashes(C){
+  const clash=[],need=Math.max(rimH(),S.d+1),ro=Ro(),all=[];
+  C.pieces.forEach((pc,pi)=>{for(let k=0;k<pc.sm.length;k+=2)all.push({pi,k,s:pc.sm[k]});});
+  for(let a=0;a<all.length;a++)for(let b=a+1;b<all.length;b++){
+    const A=all[a],B=all[b];
+    if(A.pi===B.pi&&Math.abs(A.s.s-B.s.s)<ro*4)continue;
+    if(Math.abs(A.s.p.x-B.s.p.x)>=2*ro||Math.abs(A.s.p.y-B.s.p.y)>=2*ro)continue;
+    if(Math.hypot(A.s.p.x-B.s.p.x,A.s.p.y-B.s.p.y)>=2*ro-0.2)continue;
+    const up=A.s.p.z>=B.s.p.z?A:B,lo=up===A?B:A;
+    if(up.s.p.z-S.wall<lo.s.p.z+need)clash.push(A,B);
+  }
+  C.funnels.forEach(F=>{
+    C.pieces.forEach((pc,pi)=>{
+      const entry=pc.gidx[pc.gidx.length-1]===F.i,tot=pc.sm[pc.sm.length-1].s;
+      for(let k=0;k<pc.sm.length;k+=2){
+        const s=pc.sm[k];
+        if(entry&&s.s>tot-(F.R+ro*3))continue;
+        if(Math.hypot(s.p.x-F.C.x,s.p.y-F.C.y)>=F.R+S.wall+ro)continue;
+        const lo=s.p.z-S.wall,hi=s.p.z+need;
+        if(hi>F.zHole-F.tp&&lo<F.zTop+F.lipH)clash.push({pi,k,s});
+      }
+    });
+  });
+  for(const c of clash){const st=C.pieces[c.pi].sim&&C.pieces[c.pi].sim.st;if(st)for(let k=Math.max(0,c.k-2);k<=Math.min(st.length-1,c.k+2);k++)st[k]=2;}
+  C.clashes=clash.length;
+}
+
+/* ---------- colors ---------- */
+function cssVar(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+function palette(){return {ok:cssVar('--ok'),warn:cssVar('--warn'),bad:cssVar('--bad'),gone:cssVar('--gone'),grid:cssVar('--grid'),line:cssVar('--line'),ink:cssVar('--ink'),muted:cssVar('--muted'),accent:cssVar('--accent'),panel:cssVar('--panel'),pla:cssVar('--pla'),bg:cssVar('--bg'),fx:cssVar('--fx')};}
+const stCol=(pal,s)=>[pal.ok,pal.warn,pal.bad,pal.gone][s];
+
+/* ---------- 3D ---------- */
+const stage=$('stage');
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+stage.appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(40,1,1,5000);
+camera.up.set(0,0,1);camera.position.set(220,-260,220);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x8a8f99,0.85));
+const sun=new THREE.DirectionalLight(0xffffff,0.75);sun.position.set(150,-200,300);scene.add(sun);
+const fill=new THREE.DirectionalLight(0xffffff,0.25);fill.position.set(-200,150,120);scene.add(fill);
+let grid=null;
+const group=new THREE.Group();scene.add(group);
+const ball=new THREE.Mesh(new THREE.SphereGeometry(1,32,20),new THREE.MeshPhysicalMaterial({color:0x7fd3e8,roughness:0.08,transparent:true,opacity:0.85,clearcoat:1}));
+ball.visible=false;scene.add(ball);
+let exportGeoms=[];
+
+function resize3d(){
+  const w=stage.clientWidth,h=stage.clientHeight;
+  renderer.setSize(w,h,false);renderer.domElement.style.width=w+'px';renderer.domElement.style.height=h+'px';
+  camera.aspect=w/Math.max(1,h);camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize3d).observe(stage);
+function fitView(){
+  const box=new THREE.Box3().setFromObject(group);
+  if(box.isEmpty())return;
+  const c=box.getCenter(new V3()),r=box.getSize(new V3()).length()/2;
+  const dist=r/Math.sin(camera.fov*Math.PI/360)*1.05;
+  camera.position.copy(c).addScaledVector(new V3(0.62,-0.72,0.55).normalize(),dist);
+  controls.target.copy(c);controls.update();
+}
+function rebuild3d(pal){
+  for(const o of group.children)o.geometry.dispose();
+  group.clear();exportGeoms=[];
+  if(grid){scene.remove(grid);grid.geometry.dispose();}
+  const gs=Math.ceil((S.size+60)/20)*20;
+  grid=new THREE.GridHelper(gs,gs/10,new THREE.Color(pal.line),new THREE.Color(pal.grid));
+  grid.rotateX(Math.PI/2);grid.position.z=-0.2;scene.add(grid);
+  const plaMat=new THREE.MeshStandardMaterial({color:new THREE.Color(pal.pla),roughness:0.75});
+  const fxMat=new THREE.MeshStandardMaterial({color:new THREE.Color(pal.fx),roughness:0.5,side:THREE.DoubleSide});
+  const add=(g,m,q,pi)=>{group.add(new THREE.Mesh(g,m));exportGeoms.push({g,q,pi});};
+  add(baseGeom(),plaMat);
+  ball.scale.setScalar(S.d/2);
+  if(!course)return;
+  const trackMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.55});
+  course.pieces.forEach((pc,pi)=>{
+    const colors=pc.sm.map((_,k)=>new THREE.Color(stCol(pal,pc.sim?pc.sim.st[k]:3)));
+    add(trackGeometry(pc.sm,colors),trackMat,null,pi);
+    const n=pc.sm.length;
+    if(pi===0&&S.stops)add(stopWall(pc.sm[0],-1),plaMat);
+    if(pc.gidx[0]===-1)add(stopWall(pc.sm[0],-1),plaMat);
+    const lastPt=pc.gidx[pc.gidx.length-1];
+    if(lastPt===S.pts.length-1&&S.stops&&!activeFx(lastPt))add(stopWall(pc.sm[n-1],1),plaMat);
+  });
+  for(const F of course.funnels)for(const g of funnelGeoms(F))add(g,fxMat);
+  for(const A of course.arms)add(armGeom(A),plaMat);
+  for(const q of course.pillars)add(cylGeom(q),plaMat,q);
+  cutInfo=findCut();
+  if(cutInfo&&cutInfo.ok){
+    const sz=S.size+30,pg=new THREE.PlaneGeometry(sz,sz);pg.translate(0,0,cutInfo.zc);
+    group.add(new THREE.Mesh(pg,new THREE.MeshBasicMaterial({color:new THREE.Color(pal.accent),transparent:true,opacity:0.18,side:THREE.DoubleSide,depthWrite:false})));
+  }
+}
+/* ---------- splitting into 2 prints ---------- */
+let cutInfo=null;
+// heights where only pillars pass: everything else (rails, funnels, stops, base) blocks its own height range
+function findCut(){
+  if(S.parts!==2||!course)return null;
+  let top=0;const blocks=[];
+  for(const e of exportGeoms){
+    e.g.computeBoundingBox();const b=e.g.boundingBox;top=Math.max(top,b.max.z);
+    if(!e.q)blocks.push([b.min.z-1,b.max.z+1]);
+  }
+  if(top<=S.bed)return {need:false,top};
+  const pins=S.pillarD>=4,lo=top-S.bed+0.5,hi=S.bed-0.5-(pins?pinLen():0),res={need:true,top,lo,hi,ok:false};
+  if(lo>hi)return res;
+  blocks.sort((a,b)=>a[0]-b[0]);
+  const gaps=[];let cur=-Infinity;
+  for(const [a,b] of blocks){if(a>cur)gaps.push([cur,a]);cur=Math.max(cur,b);}
+  gaps.push([cur,Infinity]);
+  let best=null;
+  for(const [a,b] of gaps){
+    const x=Math.max(a,lo),y=Math.min(b,hi);
+    if(y<x)continue;
+    const z=(x+y)/2,room=Math.min(z-a,b-z);
+    if(!best||room>best.room)best={z,room};
+  }
+  if(best){res.ok=true;res.mode='clean';res.zc=+best.z.toFixed(1);res.pins=pins;return res;}
+  const J=findJoint(top,pins);
+  if(J)Object.assign(res,J,{ok:true,mode:'joint',pins});
+  return res;
+}
+// no gap: cut straight across the rail at one spot per piece, with the plane just under the rail end
+function findJoint(top,pins){
+  const rise=S.wall+0.4,lim=S.bed-0.5;
+  const zlo=top-lim,zhi=lim-Math.max(pins?pinLen():0,rise+rimH()+0.2);
+  if(zlo>zhi)return null;
+  const mid=(zlo+zhi)/2,cands=[];
+  for(let d=0;d<=(zhi-zlo)/2+0.01;d+=0.5){cands.push(mid+d);if(d)cands.push(mid-d);}
+  for(const zc of cands){
+    if(zc<zlo-0.01||zc>zhi+0.01)continue;
+    const zj=zc+rise,joints=[];let ok=true;
+    for(const e of exportGeoms){
+      if(e.q)continue;
+      const b=e.g.boundingBox;
+      if(e.pi==null){
+        if(b.min.z>=zc-0.01){if(b.max.z-zc>lim)ok=false;continue;}
+        if(b.max.z<=zc+0.01)continue;
+        if(e.g.userData.arm)continue; // an arm right at the cut is left out
+        ok=false;break; // funnels and end stops can't be cut
+      }
+      const sm=course.pieces[e.pi].sm,n=sm.length;
+      let zmin=Infinity,zmax=-Infinity;for(const t of sm){zmin=Math.min(zmin,t.p.z);zmax=Math.max(zmax,t.p.z);}
+      if(zmin-S.wall>=zc-0.01){if(zmax+rimH()-zc>lim)ok=false;continue;}
+      if(zmax<zj){if(zmax+rimH()>lim)ok=false;continue;}
+      let k=-1,cnt=0;
+      for(let i=0;i<n-1;i++){
+        const a=sm[i].p.z,c=sm[i+1].p.z;
+        if(a>=zj&&c<zj){k=i;cnt++;}
+        else if(a<zj&&c>=zj){cnt=99;}
+      }
+      if(cnt!==1||k<6||k>n-7){ok=false;break;}
+      let dmax=-Infinity;for(let i=k;i<n;i++)dmax=Math.max(dmax,sm[i].p.z);
+      if(dmax+rimH()>lim){ok=false;break;}
+      joints.push({pi:e.pi,k});
+    }
+    if(ok&&joints.length)return {zc:+zc.toFixed(1),joints};
+  }
+  return null;
+}
+const pinLen=()=>Math.min(5,Math.max(3,S.pillarD*0.6));
+function cylBetween(x,y,r,z0,z1){
+  const g=new THREE.CylinderGeometry(r,r,z1-z0,24);g.rotateX(Math.PI/2);g.translate(x,y,(z0+z1)/2);return g;
+}
+// pillar stub with socket holes, from z0 up L mm
+function socketGeom(x,y,R,holes,hr,z0,L){
+  const sh=new THREE.Shape();sh.absarc(0,0,R,0,Math.PI*2,false);
+  for(const [hx,hy] of holes){const h=new THREE.Path();h.absarc(hx,hy,hr,0,Math.PI*2,true);sh.holes.push(h);}
+  const g=new THREE.ExtrudeGeometry(sh,{depth:L,bevelEnabled:false,curveSegments:32});
+  g.translate(x,y,z0);return g;
+}
+// returns [bottom geoms, top geoms]; the top set is moved down so it sits on the bed
+function splitParts(zc){
+  const lower=[],upper=[],L=pinLen(),joints=cutInfo.joints||[];
+  for(const {g,q,pi} of exportGeoms){
+    if(!q){
+      const J=pi!=null&&joints.find(j=>j.pi===pi);
+      if(J){const sm=course.pieces[pi].sm;upper.push(trackGeometry(sm.slice(0,J.k+1),null));lower.push(trackGeometry(sm.slice(J.k),null));continue;}
+      const b=g.boundingBox;
+      if(b.min.z>=zc-0.01)upper.push(g);
+      else if(g.userData.arm&&b.max.z>zc+0.01)continue;
+      else lower.push(g);
+      continue;
+    }
+    if(q.top<=zc){lower.push(g);continue;}
+    if(q.bot>=zc){upper.push(g);continue;}
+    if(q.fin){lower.push(finGeom(Object.assign({},q,{top:zc})));upper.push(finGeom(Object.assign({},q,{bot:zc})));continue;}
+    const R=q.r||S.pillarD/2;
+    lower.push(cylBetween(q.x,q.y,R,q.bot,zc));
+    const pins=cutInfo.pins&&q.top-zc>L+2&&zc-q.bot>2;
+    if(pins){
+      // a column gets two pins so the halves can't twist; a pillar gets one
+      const spots=q.col?[[-R*0.45,0],[R*0.45,0]]:[[0,0]],pr=q.col?R*0.2:R*0.45;
+      for(const [dx,dy] of spots)lower.push(cylBetween(q.x+dx,q.y+dy,pr,zc-0.5,zc+L-0.4));
+      upper.push(socketGeom(q.x,q.y,R,spots,pr+0.15,zc,L));
+      upper.push(cylBetween(q.x,q.y,R,zc+L-0.3,q.top));
+    }else upper.push(cylBetween(q.x,q.y,R,zc,q.top));
+  }
+  return [lower,upper.map(g=>{const c=g.clone();c.translate(0,0,-zc);return c;})];
+}
+
+
+/* ---------- 2D editors ---------- */
+const plan=$('plan'),prof=$('profile');
+function setupCanvas(c){
+  const r=c.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1);
+  c.width=Math.max(1,Math.round(r.width*dpr));c.height=Math.max(1,Math.round(r.height*dpr));
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,w:r.width,h:r.height};
+}
+let planT={k:1,cx:0,cy:0};
+const toPlan=(x,y)=>[planT.cx+x*planT.k,planT.cy-y*planT.k];
+const fromPlan=(px,py)=>({x:(px-planT.cx)/planT.k,y:-(py-planT.cy)/planT.k});
+
+function drawPlan(pal){
+  const {ctx,w,h}=setupCanvas(plan);
+  const span=S.size+30;planT={k:Math.min(w,h)/span,cx:w/2,cy:h/2};
+  ctx.fillStyle=pal.bg;ctx.fillRect(0,0,w,h);
+  const half=span/2;ctx.lineWidth=1;
+  for(let v=-Math.floor(half/10)*10;v<=half;v+=10){
+    ctx.strokeStyle=v%50===0?pal.line:pal.grid;
+    let [x1,y1]=toPlan(v,-half),[x2,y2]=toPlan(v,half);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    [x1,y1]=toPlan(-half,v);[x2,y2]=toPlan(half,v);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  }
+  ctx.fillStyle=pal.panel;ctx.strokeStyle=pal.muted;ctx.lineWidth=1.5;ctx.beginPath();
+  if(S.shape==='circle'){const [cx,cy]=toPlan(0,0);ctx.arc(cx,cy,S.size/2*planT.k,0,Math.PI*2);}
+  else{const [x,y]=toPlan(-S.size/2,S.size/2);ctx.rect(x,y,S.size*planT.k,S.size*planT.k);}
+  ctx.globalAlpha=0.9;ctx.fill();ctx.globalAlpha=1;ctx.stroke();
+  ctx.fillStyle=pal.muted;ctx.font='700 11px "Nunito", sans-serif';ctx.fillText('1 square = 10 mm',8,h-8);
+  if(colMode()){const [cx,cy]=toPlan(0,0);ctx.strokeStyle=pal.muted;ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.beginPath();ctx.arc(cx,cy,S.colD/2*planT.k,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);ctx.fillText('Column',cx-18,cy-S.colD/2*planT.k-5);}
+  if(course){
+    // funnels
+    for(const F of course.funnels){
+      const [cx,cy]=toPlan(F.C.x,F.C.y);
+      ctx.fillStyle=pal.fx;ctx.globalAlpha=0.18;ctx.beginPath();ctx.arc(cx,cy,(F.R+S.wall)*planT.k,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+      ctx.strokeStyle=pal.fx;ctx.lineWidth=Math.max(2,S.wall*planT.k);
+      ctx.beginPath();ctx.arc(cx,cy,(F.R+S.wall/2)*planT.k,-F.notch[1],-(F.notch[0]+Math.PI*2),true);ctx.stroke();
+      ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(cx,cy,F.rh*planT.k,0,Math.PI*2);ctx.stroke();
+    }
+    ctx.lineCap='round';ctx.lineJoin='round';
+    for(const pc of course.pieces){
+      const sm=pc.sm;
+      ctx.lineWidth=Ro()*2*planT.k;ctx.strokeStyle=pal.line;ctx.globalAlpha=0.7;
+      ctx.beginPath();sm.forEach((s,k)=>{const [x,y]=toPlan(s.p.x,s.p.y);k?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();ctx.globalAlpha=1;
+    }
+    ctx.fillStyle=pal.muted;
+    if(course.fins&&course.fins.length){
+      const [cx,cy]=toPlan(0,0);ctx.strokeStyle=pal.muted;ctx.globalAlpha=0.7;ctx.lineWidth=Math.max(2,finT()*planT.k);ctx.lineCap='butt';
+      const far={};for(const q of course.fins)far[q.th]=Math.max(far[q.th]||0,q.outer);
+      for(const q of course.fins)if(q.outer===far[q.th]){const [x,y]=toPlan(q.ux*q.outer,q.uy*q.outer);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();far[q.th]=-1;}
+      ctx.globalAlpha=1;ctx.lineCap='round';
+    }
+    if(course.arms&&course.arms.length){
+      const [cx,cy]=toPlan(0,0);ctx.strokeStyle=pal.muted;ctx.globalAlpha=0.55;ctx.lineWidth=Math.max(2,armW()*planT.k);ctx.lineCap='butt';
+      for(const A of course.arms){const [x,y]=toPlan(A.x,A.y);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();}
+      ctx.globalAlpha=1;ctx.lineCap='round';
+    }
+    for(const q of course.pillars){if(q.fin)continue;const [x,y]=toPlan(q.x,q.y);ctx.beginPath();ctx.arc(x,y,Math.max(2,(q.r||S.pillarD/2)*planT.k),0,Math.PI*2);ctx.fill();}
+    ctx.lineWidth=3;
+    for(const pc of course.pieces){
+      const sm=pc.sm;
+      for(let k=0;k<sm.length-1;k++){
+        const [x1,y1]=toPlan(sm[k].p.x,sm[k].p.y),[x2,y2]=toPlan(sm[k+1].p.x,sm[k+1].p.y);
+        ctx.strokeStyle=stCol(pal,pc.sim?pc.sim.st[k]:3);ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+      }
+    }
+    // jump flights
+    ctx.setLineDash([5,4]);ctx.lineWidth=2;
+    for(const J of course.jumps){
+      if(!J.result)continue;
+      ctx.strokeStyle=J.result.ok?pal.fx:pal.bad;ctx.beginPath();
+      J.result.path.forEach((q,i)=>{const [x,y]=toPlan(q.p.x,q.p.y);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+    }
+    ctx.setLineDash([]);
+  }
+  S.pts.forEach((p,i)=>{
+    const [x,y]=toPlan(p.x,p.y),fx=activeFx(i);
+    ctx.beginPath();
+    if(fx){ctx.rect(x-6,y-6,12,12);}else ctx.arc(x,y,i===sel?7:5.5,0,Math.PI*2);
+    ctx.fillStyle=i===sel?pal.accent:(fx?pal.fx:pal.panel);ctx.fill();
+    ctx.lineWidth=2;ctx.strokeStyle=fx?pal.fx:pal.accent;if(i===sel)ctx.strokeStyle=pal.ink;ctx.stroke();
+    const label=i===0?'Start':i===S.pts.length-1?'Finish':fx?(fx.type==='jump'?'Jump':'Funnel'):'';
+    if(label){ctx.fillStyle=pal.ink;ctx.font='bold 11px "Nunito", sans-serif';ctx.fillText(label,x+9,y-9);}
+  });
+  if(S.pts.length<2){
+    ctx.fillStyle=pal.muted;ctx.font='14px "Nunito", sans-serif';ctx.textAlign='center';
+    ctx.fillText(S.pts.length?'Click one more point to make a track':'Click on the base to place the start',w/2,h/2);
+    ctx.textAlign='start';
+  }
+}
+
+let profT=null,profPts=[];
+function drawProfile(pal){
+  const {ctx,w,h}=setupCanvas(prof);
+  ctx.fillStyle=pal.bg;ctx.fillRect(0,0,w,h);
+  const padL=40,padR=14,padT=12,padB=24;
+  let total=100,zmax=40;
+  if(course){
+    for(const pc of course.pieces){total=Math.max(total,pc.offset+pc.sm[pc.sm.length-1].sh);}
+    for(const p of S.pts)zmax=Math.max(zmax,p.z);
+    for(const F of course.funnels)zmax=Math.max(zmax,F.zTop+F.lipH);
+    if(cutInfo&&cutInfo.top)zmax=Math.max(zmax,cutInfo.top);
+  }
+  zmax+=12;
+  const X=v=>padL+(w-padL-padR)*v/Math.max(1,total);
+  const Y=z=>h-padB-(h-padT-padB)*z/zmax;
+  profT={X,Y,padL,padR,padT,padB,w,h,total,zmax};
+  ctx.font='10px "JetBrains Mono", monospace';ctx.fillStyle=pal.muted;ctx.lineWidth=1;
+  const zs=zmax>120?40:zmax>60?20:10;
+  for(let z=0;z<=zmax;z+=zs){ctx.strokeStyle=pal.grid;ctx.beginPath();ctx.moveTo(padL,Y(z));ctx.lineTo(w-padR,Y(z));ctx.stroke();ctx.fillText(z+'',6,Y(z)+3);}
+  const xs=[50,100,200,500,1000,2000].find(v=>total/v<=10)||5000;
+  for(let x=0;x<=total;x+=xs)ctx.fillText(x+'',X(x)-6,h-8);
+  ctx.fillText('mm',w-padR-16,h-8);
+  ctx.fillStyle=pal.line;ctx.fillRect(padL,Y(S.baseT),w-padL-padR,Y(0)-Y(S.baseT));
+  profPts=[];
+  if(!course)return;
+  ctx.lineCap='round';
+  for(const pc of course.pieces){
+    const sm=pc.sm;ctx.lineWidth=3;
+    for(let k=0;k<sm.length-1;k++){ctx.strokeStyle=stCol(pal,pc.sim?pc.sim.st[k]:3);ctx.beginPath();ctx.moveTo(X(pc.offset+sm[k].sh),Y(sm[k].p.z));ctx.lineTo(X(pc.offset+sm[k+1].sh),Y(sm[k+1].p.z));ctx.stroke();}
+    pc.gidx.forEach((gi,j)=>{if(gi>=0)profPts.push({i:gi,x:X(pc.offset+sm[j*SUB].sh)});});
+  }
+  // pillars
+  ctx.strokeStyle=pal.muted;ctx.lineWidth=1;ctx.setLineDash([3,3]);
+  for(const q of course.pillars){
+    if(q.pi==null)continue;
+    const pc=course.pieces[q.pi],x=X(pc.offset+pc.sm[q.k].sh);ctx.beginPath();ctx.moveTo(x,Y(q.bot));ctx.lineTo(x,Y(q.top));ctx.stroke();
+  }
+  // jumps
+  ctx.setLineDash([5,4]);ctx.lineWidth=2;
+  for(const J of course.jumps){
+    if(!J.flightX)continue;
+    ctx.strokeStyle=J.result&&J.result.ok?pal.fx:pal.bad;ctx.beginPath();
+    J.flightX.forEach((q,i)=>{i?ctx.lineTo(X(q.x),Y(q.z)):ctx.moveTo(X(q.x),Y(q.z));});ctx.stroke();
+  }
+  // funnels
+  for(const F of course.funnels){
+    const x0=F.offEnd,x1=F.offEnd+F.Rr;
+    ctx.setLineDash([]);ctx.strokeStyle=pal.fx;ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(X(x0),Y(F.zTop+F.lipH));ctx.lineTo(X(x0),Y(F.zTop));ctx.lineTo(X(x1-F.rh),Y(F.zHole));ctx.stroke();
+    ctx.setLineDash([3,3]);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(x1),Y(F.zHole));ctx.lineTo(X(x1),Y(F.exitZ!=null?F.exitZ:S.baseT));ctx.stroke();
+    ctx.fillStyle=pal.fx;ctx.font='bold 11px "Nunito", sans-serif';ctx.fillText('Funnel',X(x0)+4,Y(F.zTop+F.lipH)-4);
+  }
+  ctx.setLineDash([]);
+  if(cutInfo&&cutInfo.need){
+    ctx.font='bold 11px "Nunito", sans-serif';
+    if(cutInfo.ok){
+      ctx.strokeStyle=pal.accent;ctx.lineWidth=2;ctx.setLineDash([8,5]);
+      ctx.beginPath();ctx.moveTo(padL,Y(cutInfo.zc));ctx.lineTo(w-padR,Y(cutInfo.zc));ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle=pal.accent;ctx.fillText(`Cut ${cutInfo.zc.toFixed(0)} mm`,w-padR-74,Y(cutInfo.zc)-5);
+      for(const J of cutInfo.joints||[]){const pc=course.pieces[J.pi];if(!pc)continue;const t=pc.sm[Math.min(J.k,pc.sm.length-1)],x=X(pc.offset+t.sh),y=Y(t.p.z);
+        ctx.strokeStyle=pal.ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y-9);ctx.lineTo(x,y+9);ctx.stroke();ctx.fillStyle=pal.ink;ctx.fillText('Joint',x+4,y-10);}
+    }else if(cutInfo.hi>cutInfo.lo){
+      ctx.globalAlpha=0.16;ctx.fillStyle=pal.bad;ctx.fillRect(padL,Y(cutInfo.hi),w-padL-padR,Y(cutInfo.lo)-Y(cutInfo.hi));ctx.globalAlpha=1;
+      ctx.fillStyle=pal.bad;ctx.fillText('Cut zone: needs a drop here',padL+6,Y(cutInfo.hi)+13);
+    }
+  }
+  if(course.fail&&course.fail.type==='stop'){const pc=course.fail.piece,s=pc.sm[course.fail.k];ctx.fillStyle=pal.bad;ctx.font='bold 11px "Nunito", sans-serif';ctx.fillText('Stops here',X(pc.offset+s.sh)+6,Y(s.p.z)-8);}
+  for(const q of profPts){
+    const p=S.pts[q.i],y=Y(p.z),fx=activeFx(q.i);
+    ctx.beginPath();if(fx)ctx.rect(q.x-6,y-6,12,12);else ctx.arc(q.x,y,q.i===sel?7:5.5,0,Math.PI*2);
+    ctx.fillStyle=q.i===sel?pal.accent:(fx?pal.fx:pal.panel);ctx.fill();ctx.lineWidth=2;ctx.strokeStyle=q.i===sel?pal.ink:(fx?pal.fx:pal.accent);ctx.stroke();
+  }
+}
+
+/* ---------- report ---------- */
+const jumpReason={short:'The jump falls short of the landing rail. Lower the landing point or move it closer.',over:'The jump overshoots the landing rail. Raise the landing point or move it farther away.',rim:'The marble lands on the rail’s edge. Line up the landing point and the next one straight ahead of the jump, and avoid a sharp turn right after landing.',wall:'The landing point is too high, so the marble hits the side or end of the rail.',back:'The landing rail points backwards, so the marble rolls back.',slow:'The marble is too slow at the jump. Make the run-up steeper.'};
+// a funnel whose underside sits inside the cut window, so a gap under it gives a clean cut
+function gapFunnel(c){return course.funnels.find(F=>F.i<S.pts.length-1&&F.zHole-F.tp-4>c.lo&&F.zHole-F.tp-4<c.hi);}
+function openGap(F){const gapNow=(F.zHole-F.tp)-(F.exitZ+rimH()),extra=Math.ceil(Math.max(0,7-gapNow));S.pts[F.i].fx.drop=(S.pts[F.i].fx.drop||0)+extra;changed();}
+function report(pal){
+  const v=$('verdict'),dot=v.querySelector('.dot'),strong=v.querySelector('strong');
+  const stats=$('stats'),issues=$('issues');
+  stats.innerHTML='';issues.innerHTML='';
+  const add=(sev,t)=>{const li=document.createElement('li');li.textContent=t;li.style.setProperty('--c',[pal.ok,pal.warn,pal.bad][sev]);issues.appendChild(li);return li;};
+  const addBtns=(li,btns)=>{const row=document.createElement('div');row.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:6px';for(const [label,fn] of btns){const b=document.createElement('button');b.className='btn';b.textContent=label;b.onclick=fn;row.appendChild(b);}li.appendChild(row);};
+  if(!course){dot.style.background=pal.gone;strong.textContent='Place two or more points to make a track';return;}
+  const f=course.fail;
+  let verdict,vc=pal.ok;
+  const anyFly=course.pieces.some(pc=>pc.sim&&pc.sim.flyK>=0);
+  if(f&&f.type==='stop'){verdict=`Likely to stop about ${Math.round(f.piece.distBefore+f.piece.sm[f.k].s)} mm from the start`;vc=pal.bad;}
+  else if(f&&f.type==='jump'){verdict='The jump is likely to fail';vc=pal.bad;}
+  else if(f&&f.type==='funnel'){verdict='Likely to get stuck in the funnel';vc=pal.bad;}
+  else if(course.clashes){verdict='Some rails collide';vc=pal.bad;}
+  else if(anyFly){verdict='Reaches the finish, but may fly off a turn';vc=pal.warn;}
+  else verdict='It rolls all the way!';
+  dot.style.background=vc;strong.textContent=verdict;
+
+  let minx=-S.size/2,maxx=S.size/2,miny=-S.size/2,maxy=S.size/2,maxz=S.baseT,maxV=0;
+  for(const pc of course.pieces){for(const s of pc.sm){minx=Math.min(minx,s.p.x-Ro());maxx=Math.max(maxx,s.p.x+Ro());miny=Math.min(miny,s.p.y-Ro());maxy=Math.max(maxy,s.p.y+Ro());maxz=Math.max(maxz,s.p.z+rimH());}if(pc.sim)maxV=Math.max(maxV,pc.sim.maxV);}
+  for(const F of course.funnels){const e=F.R+S.wall;minx=Math.min(minx,F.C.x-e);maxx=Math.max(maxx,F.C.x+e);miny=Math.min(miny,F.C.y-e);maxy=Math.max(maxy,F.C.y+e);maxz=Math.max(maxz,F.zTop+F.lipH);}
+  for(const J of course.jumps)if(J.result&&J.result.landV)maxV=Math.max(maxV,J.result.landV);
+  const dims=[maxx-minx,maxy-miny,maxz];
+  const st=(label,val)=>{const d=document.createElement('div');d.className='stat';d.innerHTML='<span></span><b></b>';d.firstChild.textContent=label;d.lastChild.textContent=val;stats.appendChild(d);};
+  const z0=S.pts[0].z,zl=S.pts[S.pts.length-1].z;
+  st('Rail length',Math.round(course.railLen)+' mm');
+  st('Total drop',(z0-zl).toFixed(1)+' mm');
+  st('Run time',f?'—':course.tEnd.toFixed(1)+' s');
+  st('Top speed',(maxV/1000).toFixed(2)+' m/s');
+  if(course.jumps.length||course.funnels.length)st('Tricks',[course.jumps.length?`${course.jumps.length} jump${course.jumps.length>1?'s':''}`:'',course.funnels.length?`${course.funnels.length} funnel${course.funnels.length>1?'s':''}`:''].filter(Boolean).join(' · '));
+  st('Pillars',course.pillars.filter(q=>!q.col&&!q.fin).length+'');
+  if(colMode()){st('Fins',new Set(course.fins.map(q=>q.th)).size+'');if(course.arms.length)st('Arms',course.arms.length+'');}
+  st('Overall size',dims.map(x=>Math.round(x)).join('×')+' mm');
+
+  if(f&&f.type==='stop')add(2,'The marble stops partway. Steepen the slope before that spot or raise the start.');
+  if(f&&f.type==='jump'){
+    const li=add(2,jumpReason[f.reason]||'The jump fails.');
+    const J=f.ev;
+    if(!S.auto&&J.idealZ!=null)addBtns(li,[['Match landing height',()=>fitJump(J.i)]]);
+  }
+  if(f&&f.type==='funnel')add(2,'The funnel is too shallow and the marble stops inside. Increase the bowl angle.');
+  for(const J of course.jumps){
+    if(J.result&&J.result.ok)add(0,`Jump lands at ${(J.result.landV/1000).toFixed(2)} m/s. The marble may bounce on impact, so check it with a test print.`);
+    if(J.lateral>Ri()*0.7)add(1,'The landing rail is off to the side of the jump. Line up its first two points straight ahead of the jump.');
+    if(J.idealZ==null&&!J.dead)add(2,'The marble is too slow at the jump, or the landing point is behind it.');
+  }
+  for(const F of course.funnels){
+    if(F.result&&F.result.ok)add(0,`The marble circles the funnel about ${F.result.turns.toFixed(1)} times before dropping.`);
+    if(F.tooLow)add(2,'There isn’t enough height under the funnel for the next rail. Raise the start.');
+    if(!insideBase(F.C.x,F.C.y,F.R+S.wall))add(1,'The funnel sticks out past the base.');
+  }
+  course.pieces.forEach(pc=>{
+    const s=pc.sim;if(!s||s.unreached)return;
+    if(s.flyK>=0)add(2,`The turn about ${Math.round(pc.distBefore+pc.sm[s.flyK].s)} mm from the start is taken too fast and the marble may fly off. Widen the turn or ease the slope before it.`);
+    else if(s.maxPhi>50)add(1,'The marble climbs high up the wall in a turn (yellow). Easing it a little is safer.');
+    if(s.slowLen>5)add(1,`About ${Math.round(s.slowLen)} mm of track slows the marble down (yellow). It should coast through, but a real print might stop there.`);
+    if(s.tight>0)add(2,`A turn is so tight the rail overlaps itself. Keep turn radii at ${Math.ceil(Ro()*1.2)} mm or more.`);
+  });
+  if(colMode()&&course.colHit)add(2,`The track runs into the center column. Keep the rail centerline at least ${Math.ceil(S.colD/2+Ro()+1)} mm from the middle of the base.`);
+  if(colMode()&&!course.arms.length&&!course.fins.length)add(1,'No fins or arms could be placed. Draw the track around the column (dashed circle in the top view).');
+  if(course.clashes)add(2,'Two rails (or a rail and a funnel) are too close for the marble to pass (red). Move the points apart or raise the upper rail.');
+  if(course.longSpans.length)add(1,`Rails underneath leave about ${Math.round(Math.max(...course.longSpans.map(x=>x.len)))} mm without a pillar. ${colMode()?' Fins and arms can’t reach where another rail or a funnel is in the way; try 6 fins.':''} It may sag while printing, so try nudging the points.`);
+  for(const F of course.funnels)if(F.legsMissing)add(1,`${F.legsMissing} funnel leg${F.legsMissing>1?'s':''} couldn’t be placed because of rails underneath.`);
+  if(S.auto&&course.info.deficit>0.05&&S.autoStart)add(2,`Even at the full height you can print (${maxH()} mm${S.parts===2?' in 2 pieces':''}) there isn’t enough drop. Shorten the track or ease the slope${S.parts===2?'':', or switch to 2 pieces'}.`);
+  else if(S.auto&&course.info.deficit>0.05){
+    const need=Math.ceil(S.startZ+course.info.deficit+1);
+    const li=add(1,`The track runs out of height and goes flat on the base (yellow). Raise the start to ${need} mm or more, ease the slope, or shorten the track.`);
+    addBtns(li,[[`Set start to ${need} mm`,()=>{S.startZ=need;$('startZ').value=need;changed();}]]);
+  }
+  if(course.pieces.some(pc=>pc.sm.some(s=>!insideBase(s.p.x,s.p.y,Ro()*0.6))))add(1,'The track sticks out past the base. Make the base bigger or move points inward.');
+  const steep=course.pieces.some(pc=>pc.sm.some((s,k)=>k<pc.sm.length-1&&(s.p.z-pc.sm[k+1].p.z)/Math.max(1e-6,s.p.distanceTo(pc.sm[k+1].p))>0.6));
+  if(steep)add(1,'Some slopes are very steep. The marble gets fast, and the rail profile can print poorly.');
+  S.pts.forEach((p,i)=>{const msg=fxProblem(i);if(msg)add(1,`The trick on point ${i+1} is ignored: ${msg}`);});
+  if(dims[0]>S.bed||dims[1]>S.bed)add(2,`The model is wider than your printer’s build size (${S.bed} mm).`);
+  if(dims[2]>maxH())add(2,`The model is taller than you can print (${maxH()} mm${S.parts===2?' in 2 pieces':''}).${S.parts===2?'':' Switch to 2 pieces to double the height limit.'}`);
+  if(S.parts===2&&cutInfo){
+    const c=cutInfo;
+    if(!c.need)add(0,`It’s ${Math.round(c.top)} mm tall, so it fits in one print and won’t be split.`);
+    else if(c.ok){
+      st('Cut height',c.zc.toFixed(1)+' mm');
+      if(c.mode==='clean')add(0,`Splits into 2 prints at ${c.zc.toFixed(1)} mm (dashed line): bottom ${c.zc.toFixed(0)} mm tall, top ${(c.top-c.zc).toFixed(0)} mm tall. Only ${colMode()?'the column and pillars':'pillars'} cross the cut${c.pins?', and each gets a pin and socket so the halves line up':''}.`);
+      else{
+        const li=add(1,`Splits into 2 prints at ${c.zc.toFixed(1)} mm (dashed line). There’s no gap to cut through, so the rail is cut straight across at ${c.joints.length>1?c.joints.length+' spots':'one spot'} (marked “Joint” in the side view). Glue it carefully and sand the seam smooth so the marble doesn’t catch.${colMode()&&c.pins?' The column gets two pins so the halves can’t twist.':''}`);
+        const F=gapFunnel(c);
+        if(F)addBtns(li,[[`Cut under point ${F.i+1}’s funnel instead (no rail joint)`,()=>openGap(F)]]);
+      }
+    }else{
+      const base=`No clean place to cut yet. A downhill rail passes through every height, so the cut has to go through a vertical drop between ${Math.ceil(c.lo)} and ${Math.floor(c.hi)} mm (shaded in the side view).`;
+      const F=gapFunnel(c),over=(c.top-(S.bed-0.5))-(S.bed-0.5-Math.max(c.pins?pinLen():0,S.wall+0.4+rimH()+0.2));
+      if(over>0&&!F)add(2,`At ${Math.round(c.top)} mm it’s just too tall to split into two prints that each fit: the cut needs a few millimeters of overlap. Make it about ${Math.ceil(over)} mm lower (ease the slope a little or shorten the track).`);
+      else if(F){
+        const li=add(2,`${base} The funnel on point ${F.i+1} is at a good height. Leaving a gap under it lets the cut pass through there (the marble just drops a little farther).`);
+        addBtns(li,[[`Add a gap under point ${F.i+1}’s funnel`,()=>openGap(F)]]);
+      }else add(2,`${base} Make a point at about ${Math.round((c.lo+c.hi)/2)} mm a funnel, then a button appears here to open up a gap under it for the cut.`);
+    }
+  }
+  if(!issues.children.length)add(0,'No problems found.');
+}
+
+/* ---------- main update ---------- */
+let sel=-1,course=null,raf=0;
+function changed(geom=true){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;update(geom);});}
+function update(geom=true){
+  const pal=palette();
+  clampAll();
+  course=buildCourse();
+  if(course&&S.auto&&S.autoStart){
+    // find the lowest start that keeps every part above the base
+    let z=minZ()+2;
+    for(let it=0;it<12;it++){
+      S.startZ=z;course=buildCourse();
+      const d=course.info.deficit;
+      if(d<0.05||z>=maxH())break;
+      z=Math.min(maxH(),Math.ceil(z+d+2));
+    }
+    if(document.activeElement!==$('startZ'))$('startZ').value=S.startZ;
+  }
+  $('startZ').disabled=S.auto&&S.autoStart;
+  $('startZ').max=maxH();
+  $('partsNote').textContent=S.parts===2?`Height limit ${maxH()} mm. The model is cut into two prints that each fit your printer, through a gap if there is one, otherwise across the rail at one glued joint.`:`Height limit ${maxH()} mm. Choose 2 pieces to print up to ${S.bed*2} mm tall.`;
+  if(course){course.pillars=allPillars(course);findClashes(course);}
+  if(geom)rebuild3d(pal);
+  drawPlan(pal);drawProfile(pal);report(pal);
+  syncSel();
+  $('widthNote').textContent=`Groove ${(Ri()*2).toFixed(1)} mm wide · rail ${(Ro()*2).toFixed(1)} mm wide · tightest turn about ${Math.ceil(Ro()*1.2)} mm radius`;
+  $('crrNote').textContent=`${S.crr.toFixed(3)}: slopes gentler than about ${(S.crr*100).toFixed(1)}% slow the marble down. Raise it for rough prints.`;
+  saveDraft();
+}
+function fitJump(i){
+  const J=course&&course.jumps.find(e=>e.i===i);
+  if(!J||J.idealZ==null)return;
+  const dz=J.idealZ-S.pts[i+1].z;
+  for(let k=i+1;k<S.pts.length;k++)S.pts[k].z=Math.max(minZ(),+(S.pts[k].z+dz).toFixed(1));
+  changed();
+}
+function syncSel(){
+  const box=$('selBox'),fb=$('fxBox');
+  if(sel<0||sel>=S.pts.length){box.hidden=true;fb.hidden=true;return;}
+  box.hidden=false;
+  const p=S.pts[sel],n=S.pts.length;
+  $('selLabel').textContent=sel===0?'Start point':sel===n-1?'Finish point':`Point ${sel+1}`;
+  if(document.activeElement!==$('selZ'))$('selZ').value=p.z.toFixed(1);
+  fb.hidden=sel===0;
+  if(sel===0)return;
+  const type=p.fx?p.fx.type:'none';
+  $('fxNone').setAttribute('aria-pressed',type==='none');$('fxJump').setAttribute('aria-pressed',type==='jump');$('fxFunnel').setAttribute('aria-pressed',type==='funnel');
+  $('fxJumpBox').hidden=type!=='jump';$('fxFunnelBox').hidden=type!=='funnel';
+  $('fxNote').textContent=fxProblem(sel)||'';
+  if(type==='jump'){
+    const J=course&&course.jumps.find(e=>e.i===sel);
+    $('fxFitJump').hidden=S.auto||!J||J.idealZ==null;
+    if(document.activeElement!==$('fxRamp'))$('fxRamp').value=p.fx.ramp!=null?p.fx.ramp:25;
+    $('fxRamp').disabled=!S.auto;
+    const facts=J?`Take-off speed ${(J.speed/1000).toFixed(2)} m/s · gap ${J.gap.toFixed(0)} mm`:'';
+    $('fxJumpInfo').textContent=!J?'':S.auto?(J.idealZ!=null?`${facts} · landing drop ${(p.z-S.pts[sel+1].z).toFixed(1)} mm (set automatically)`:`${facts}. Too slow to work out a landing point.`):`${facts}. Heights are manual; use the button below if the landing misses.`;
+  }
+  if(type==='funnel'){
+    if(document.activeElement!==$('fxR'))$('fxR').value=Math.max(funnelMinR(),p.fx.R||funnelDefaultR());
+    if(document.activeElement!==$('fxAng'))$('fxAng').value=p.fx.ang||12;
+    if(document.activeElement!==$('fxDrop'))$('fxDrop').value=p.fx.drop||0;
+    $('fxLeft').setAttribute('aria-pressed',p.fx.dir!==-1);$('fxRight').setAttribute('aria-pressed',p.fx.dir===-1);
+    const F=course&&course.funnels.find(e=>e.i===sel);
+    $('fxFunnelInfo').textContent=F?`Bowl depth ${(F.zTop-F.zHole).toFixed(1)} mm · total drop through it ${(F.zTop-(F.exitZ!=null?F.exitZ:S.baseT)).toFixed(1)} mm · smallest radius ${funnelMinR()} mm.`:'';
+  }
+}
+
+/* ---------- plan interaction ---------- */
+let drag=null;
+function evPos(e,c){const r=c.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];}
+function hitPlanPoint(px,py){
+  let best=-1,bd=12;
+  S.pts.forEach((p,i)=>{const [x,y]=toPlan(p.x,p.y);const d=Math.hypot(x-px,y-py);if(d<bd){bd=d;best=i;}});
+  return best;
+}
+plan.addEventListener('pointerdown',e=>{
+  if(e.button===2)return;
+  const [px,py]=evPos(e,plan);
+  let i=hitPlanPoint(px,py);
+  if(i<0){
+    const wp=fromPlan(px,py),w=baseInset(wp.x,wp.y,Ro());
+    let ins=-1,insZ=0;
+    if(course){
+      let bd=Math.max(8,Ro()*planT.k);
+      for(const pc of course.pieces)pc.sm.forEach((s,k)=>{
+        if(k===0||k===pc.sm.length-1)return;
+        const [x,y]=toPlan(s.p.x,s.p.y),d=Math.hypot(x-px,y-py);
+        if(d<bd){bd=d;const seg=Math.floor(k/SUB),gi=pc.gidx[seg];ins=gi>=0?gi:pc.gidx.find(g=>g>=0)-1;insZ=s.p.z;}
+      });
+    }
+    if(ins>=0){S.pts.splice(ins+1,0,{x:w.x,y:w.y,z:insZ});i=ins+1;}
+    else{
+      const last=S.pts[S.pts.length-1];
+      const z=last?last.z-S.slope/100*Math.hypot(w.x-last.x,w.y-last.y):S.startZ;
+      S.pts.push({x:w.x,y:w.y,z:Math.max(minZ(),z)});i=S.pts.length-1;
+    }
+  }
+  sel=i;drag={i};
+  plan.setPointerCapture(e.pointerId);
+  changed();
+});
+plan.addEventListener('pointermove',e=>{
+  if(!drag)return;
+  const [px,py]=evPos(e,plan),wp=fromPlan(px,py),w=baseInset(wp.x,wp.y,Ro());
+  S.pts[drag.i].x=+w.x.toFixed(1);S.pts[drag.i].y=+w.y.toFixed(1);
+  changed();
+});
+const endDrag=()=>{drag=null;};
+plan.addEventListener('pointerup',endDrag);plan.addEventListener('pointercancel',endDrag);
+plan.addEventListener('contextmenu',e=>{e.preventDefault();const [px,py]=evPos(e,plan);const i=hitPlanPoint(px,py);if(i>=0)removePoint(i);});
+function removePoint(i){S.pts.splice(i,1);sel=Math.min(i,S.pts.length-1);if(!S.pts.length)sel=-1;changed();}
+
+/* ---------- profile interaction ---------- */
+let pdrag=null;
+prof.addEventListener('pointerdown',e=>{
+  if(!course||!profT)return;
+  const [px,py]=evPos(e,prof);
+  let best=-1,bd=14;
+  for(const q of profPts){const d=Math.hypot(q.x-px,profT.Y(S.pts[q.i].z)-py);if(d<bd){bd=d;best=q.i;}}
+  if(best<0)return;
+  sel=best;pdrag={i:best,zmax:profT.zmax};
+  prof.setPointerCapture(e.pointerId);
+  changed(false);
+});
+prof.addEventListener('pointermove',e=>{
+  if(!pdrag)return;
+  const [,py]=evPos(e,prof),t=profT,z=(t.h-t.padB-py)/(t.h-t.padT-t.padB)*pdrag.zmax;
+  if(S.auto){S.auto=false;$('auto').checked=false;}
+  S.pts[pdrag.i].z=+Math.max(minZ(),Math.min(maxH(),z)).toFixed(1);
+  if(pdrag.i===0){S.startZ=Math.round(S.pts[0].z);$('startZ').value=S.startZ;}
+  changed();
+});
+const endP=()=>{pdrag=null;};
+prof.addEventListener('pointerup',endP);prof.addEventListener('pointercancel',endP);
+
+document.addEventListener('keydown',e=>{
+  if((e.key==='Delete'||e.key==='Backspace')&&sel>=0&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();removePoint(sel);}
+});
+$('selZ').addEventListener('input',()=>{
+  const v=parseFloat($('selZ').value);if(!isFinite(v)||sel<0)return;
+  if(S.auto){S.auto=false;$('auto').checked=false;}
+  S.pts[sel].z=Math.max(minZ(),Math.min(maxH(),v));changed();
+});
+$('selDel').addEventListener('click',()=>{if(sel>=0)removePoint(sel);});
+
+/* ---------- gimmick controls ---------- */
+function setFx(type){
+  if(sel<1)return;
+  const p=S.pts[sel];
+  if(type==='none')delete p.fx;
+  else if(type==='jump')p.fx={type:'jump',ramp:25};
+  else p.fx={type:'funnel',R:funnelDefaultR(),ang:12,dir:1};
+  changed();
+}
+$('fxNone').addEventListener('click',()=>setFx('none'));
+$('fxJump').addEventListener('click',()=>setFx('jump'));
+$('fxFunnel').addEventListener('click',()=>setFx('funnel'));
+$('fxFitJump').addEventListener('click',()=>fitJump(sel));
+$('fxRamp').addEventListener('change',()=>{const p=S.pts[sel];if(!p||!p.fx)return;const v=parseFloat($('fxRamp').value);if(isFinite(v))p.fx.ramp=Math.max(0,Math.min(100,v));changed();});
+$('fxR').addEventListener('change',()=>{const p=S.pts[sel];if(!p||!p.fx)return;const v=parseFloat($('fxR').value);if(isFinite(v))p.fx.R=Math.max(funnelMinR(),v);changed();});
+$('fxDrop').addEventListener('change',()=>{const p=S.pts[sel];if(!p||!p.fx)return;const v=parseFloat($('fxDrop').value);if(isFinite(v))p.fx.drop=Math.max(0,Math.min(60,v));changed();});
+$('fxAng').addEventListener('change',()=>{const p=S.pts[sel];if(!p||!p.fx)return;const v=parseFloat($('fxAng').value);if(isFinite(v))p.fx.ang=Math.max(4,Math.min(35,v));changed();});
+$('fxLeft').addEventListener('click',()=>{const p=S.pts[sel];if(p&&p.fx){p.fx.dir=1;changed();}});
+$('fxRight').addEventListener('click',()=>{const p=S.pts[sel];if(p&&p.fx){p.fx.dir=-1;changed();}});
+
+/* ---------- inputs ---------- */
+const numIds=['d','gap','wall','baseT','bed','startZ','slope','pillarGap','pillarD','colD'];
+numIds.forEach(id=>$(id).addEventListener('input',()=>{let v=parseFloat($(id).value);if(isFinite(v)){if(id==='startZ')v=Math.min(maxH(),v);S[id]=v;if(id==='startZ'&&!S.auto&&S.pts[0])S.pts[0].z=v;changed();}}));
+$('size').addEventListener('change',()=>{
+  const v=parseFloat($('size').value);
+  if(!isFinite(v)||v<40){$('size').value=S.size;return;}
+  const f=v/S.size;S.size=v;
+  for(const p of S.pts){p.x*=f;p.y*=f;}
+  changed();setTimeout(fitView,30);
+});
+$('crr').addEventListener('input',()=>{S.crr=parseFloat($('crr').value);changed();});
+$('auto').addEventListener('change',()=>{S.auto=$('auto').checked;changed();});
+$('autoStart').addEventListener('change',()=>{S.autoStart=$('autoStart').checked;changed();});
+$('stops').addEventListener('change',()=>{S.stops=$('stops').checked;changed();});
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{S.d=parseFloat(b.dataset.d);$('d').value=S.d;changed();}));
+function setShape(s){S.shape=s;$('shapeCircle').setAttribute('aria-pressed',s==='circle');$('shapeSquare').setAttribute('aria-pressed',s==='square');changed();}
+function setSup(v){S.sup=v;syncSup();changed();}
+function syncSup(){
+  const c=colMode();
+  $('supPillars').setAttribute('aria-pressed',!c);$('supColumn').setAttribute('aria-pressed',c);
+  $('colRow').hidden=!c;$('finRow').hidden=!c;$('addLap').hidden=!c;
+  document.querySelectorAll('#finRow button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.fins===S.fins));
+  $('supNote').textContent=c?'A column stands in the middle of the base, with a few thin walls (fins) running out to the inside edge of every lap. Draw the track around it, or use “Add a lap around the column”. Short arms are added only where a fin can’t reach.':'';
+}
+$('supPillars').addEventListener('click',()=>setSup('pillars'));
+$('supColumn').addEventListener('click',()=>setSup('column'));
+// append one full circle around the column, carrying on from the last point
+function addLap(){
+  const per=8,P=S.pts,ro=Ro(),R0=Math.max(S.colD/2+ro+4,S.size/2-ro-4);
+  let r=R0,a0=-Math.PI/2,dir=1;
+  if(P.length){
+    const L=P[P.length-1];r=Math.hypot(L.x,L.y);a0=Math.atan2(L.y,L.x);
+    if(P.length>1){const Q=P[P.length-2];dir=(Q.x*L.y-Q.y*L.x)>=0?1:-1;}
+    if(r<S.colD/2+ro+2)r=R0;
+  }else P.push({x:+(r*Math.cos(a0)).toFixed(1),y:+(r*Math.sin(a0)).toFixed(1),z:0});
+  for(let i=1;i<=per;i++){const a=a0+dir*i*Math.PI*2/per;P.push({x:+(r*Math.cos(a)).toFixed(1),y:+(r*Math.sin(a)).toFixed(1),z:0});}
+  if(P.length===per+1){S.auto=true;$('auto').checked=true;}
+  sel=-1;changed();setTimeout(fitView,30);
+}
+$('addLap').addEventListener('click',addLap);
+document.querySelectorAll('#finRow button').forEach(b=>b.addEventListener('click',()=>{S.fins=+b.dataset.fins;syncSup();changed();}));
+function setParts(n){S.parts=n;$('parts1').setAttribute('aria-pressed',n!==2);$('parts2').setAttribute('aria-pressed',n===2);changed();}
+$('parts1').addEventListener('click',()=>setParts(1));
+$('parts2').addEventListener('click',()=>setParts(2));
+$('shapeCircle').addEventListener('click',()=>setShape('circle'));
+$('shapeSquare').addEventListener('click',()=>setShape('square'));
+$('sample').addEventListener('click',()=>{S.pts=samplePts();S.auto=true;$('auto').checked=true;sel=-1;changed();setTimeout(fitView,30);});
+$('clear').addEventListener('click',()=>{S.pts=[];sel=-1;changed();});
+$('fit').addEventListener('click',fitView);
+function syncInputs(){
+  numIds.forEach(id=>$(id).value=S[id]);$('size').value=S.size;
+  if(S.autoStart===undefined)S.autoStart=true;
+  $('crr').value=S.crr;$('auto').checked=S.auto;$('autoStart').checked=S.autoStart;$('stops').checked=S.stops;
+  $('shapeCircle').setAttribute('aria-pressed',S.shape==='circle');$('shapeSquare').setAttribute('aria-pressed',S.shape==='square');
+  if(S.sup!=='column')S.sup='pillars';if(![3,4,6].includes(S.fins))S.fins=4;syncSup();
+  if(S.parts!==2)S.parts=1;$('parts1').setAttribute('aria-pressed',S.parts!==2);$('parts2').setAttribute('aria-pressed',S.parts===2);
+}
+
+/* ---------- rolling animation ---------- */
+let anim=null;
+$('roll').addEventListener('click',()=>{if(!course||!course.timeline.length)return;anim={t0:performance.now()};ball.visible=true;});
+function loop(now){
+  requestAnimationFrame(loop);
+  controls.update();
+  if(anim&&course&&course.timeline.length){
+    const TL=course.timeline,tEnd=TL[TL.length-1].t,t=(now-anim.t0)/1000;
+    if(t>=tEnd){ball.position.copy(TL[TL.length-1].p);if(!anim.end)anim.end=now;if(now-anim.end>1500){anim=null;ball.visible=false;}}
+    else{
+      let lo=0,hi=TL.length-1;
+      while(hi-lo>1){const m=(lo+hi)>>1;if(TL[m].t<=t)lo=m;else hi=m;}
+      const f=(t-TL[lo].t)/Math.max(1e-9,TL[hi].t-TL[lo].t);
+      ball.position.copy(TL[lo].p).lerp(TL[hi].p,Math.min(1,Math.max(0,f)));
+    }
+    $('clock').textContent=`${Math.min(t,tEnd).toFixed(2)} s`;
+  }
+  renderer.render(scene,camera);
+}
+
+/* ---------- export ---------- */
+function stlBinary(geoms){
+  let tri=0;const list=[];
+  for(const g of geoms){const pos=g.attributes.position.array,ix=g.index?g.index.array:null;const n=ix?ix.length/3:pos.length/9;tri+=n;list.push([pos,ix,n]);}
+  const buf=new ArrayBuffer(84+50*tri),dv=new DataView(buf);
+  const head='Marble coaster - mm units';for(let i=0;i<head.length;i++)dv.setUint8(i,head.charCodeAt(i));
+  dv.setUint32(80,tri,true);let o=84;
+  const a=new V3(),b=new V3(),c=new V3(),nrm=new V3(),e1=new V3();
+  for(const [pos,ix,n] of list){
+    for(let t=0;t<n;t++){
+      const i0=ix?ix[t*3]:t*3,i1=ix?ix[t*3+1]:t*3+1,i2=ix?ix[t*3+2]:t*3+2;
+      a.fromArray(pos,i0*3);b.fromArray(pos,i1*3);c.fromArray(pos,i2*3);
+      nrm.subVectors(b,a);e1.subVectors(c,a);nrm.cross(e1).normalize();
+      for(const v of [nrm,a,b,c]){dv.setFloat32(o,v.x,true);dv.setFloat32(o+4,v.y,true);dv.setFloat32(o+8,v.z,true);o+=12;}
+      dv.setUint16(o,0,true);o+=2;
+    }
+  }
+  return new Uint8Array(buf);
+}
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u){let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function zip(files){
+  const enc=new TextEncoder(),parts=[],central=[];let off=0;
+  for(const f of files){
+    const name=enc.encode(f.name),crc=crc32(f.data),sz=f.data.length;
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true);lh.setUint16(4,20,true);lh.setUint16(6,0x0800,true);lh.setUint16(8,0,true);
+    lh.setUint16(10,0,true);lh.setUint16(12,0x21,true);lh.setUint32(14,crc,true);lh.setUint32(18,sz,true);lh.setUint32(22,sz,true);
+    lh.setUint16(26,name.length,true);lh.setUint16(28,0,true);
+    parts.push(new Uint8Array(lh.buffer),name,f.data);
+    const ch=new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true);ch.setUint16(4,20,true);ch.setUint16(6,20,true);ch.setUint16(8,0x0800,true);ch.setUint16(10,0,true);
+    ch.setUint16(12,0,true);ch.setUint16(14,0x21,true);ch.setUint32(16,crc,true);ch.setUint32(20,sz,true);ch.setUint32(24,sz,true);
+    ch.setUint16(28,name.length,true);ch.setUint32(42,off,true);
+    central.push(new Uint8Array(ch.buffer),name);
+    off+=30+name.length+sz;
+  }
+  const cdSize=central.reduce((s,p)=>s+p.length,0);
+  const end=new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true);end.setUint16(8,files.length,true);end.setUint16(10,files.length,true);end.setUint32(12,cdSize,true);end.setUint32(16,off,true);
+  return new Blob([...parts,...central,new Uint8Array(end.buffer)]);
+}
+let dl=null;
+const msg=t=>{$('dlMsg').textContent=t;};
+(async()=>{
+  try{dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;}catch(e){dl=null;}
+  if(!dl){dl={save:async({filename,data})=>{const b=data instanceof Blob?data:new Blob([data]);const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);}};}
+})();
+function designJSON(){return JSON.stringify({app:'marble-coaster',v:2,...S},null,1);}
+async function save(filename,data,okText){
+  if(!dl)return;
+  try{await dl.save({filename,data});msg(okText);}
+  catch(e){const c=e&&e.code;msg(c==='declined'?'Save canceled.':c==='rate_limited'?'Wait a moment, then try again.':'Couldn’t save ('+(c||'unknown error')+').');}
+}
+$('dlStl').addEventListener('click',()=>{
+  if(!course){msg('Make a track first.');return;}
+  const split=S.parts===2&&cutInfo&&cutInfo.need&&cutInfo.ok;
+  if(S.parts===2&&cutInfo&&cutInfo.need&&!cutInfo.ok){msg('No clean cut height yet (see the check list), so nothing was saved. Add a funnel in the cut zone first.');return;}
+  const readme=new TextEncoder().encode(
+`Made with Marble Run Studio
+Units: mm, Z up
+Marble diameter: ${S.d} mm  Groove width: ${(Ri()*2).toFixed(1)} mm
+Base: ${S.shape==='circle'?'round':'square'} ${S.size} mm
+Tricks: ${course.jumps.length} jump(s), ${course.funnels.length} funnel(s)
+Printing tip: print the underside of the rails and funnels with supports (tree supports work well).
+Pillars, ${colMode()?'the column, fins, ':''}rails, funnels and the base are overlapping parts. Load them as one object in your slicer and they print as one piece.
+${split?`
+Split into 2 prints at ${cutInfo.zc.toFixed(1)} mm:
+- marble-coaster-bottom.stl (with the base)
+- marble-coaster-top.stl (already moved down so the pillar ends sit on the bed)
+${cutInfo.pins?`Each cut pillar${colMode()?' and the column':''} has pins on the bottom half and sockets on the top half. If a pin is too tight, sand it a little.`:''}
+${cutInfo.mode==='joint'?'The rail is also cut straight across where it passes the cut height. Glue the rail ends first, check the seam with a marble, and sand any step smooth. Then glue the column/pillars.':'Glue the pillars together with superglue. Only pillars cross the cut, so the rails have no seam.'}
+`:''}`);
+  const geoms=exportGeoms.map(e=>e.g);
+  const files=split?(([lo,up])=>[{name:'marble-coaster-bottom.stl',data:stlBinary(lo)},{name:'marble-coaster-top.stl',data:stlBinary(up)}])(splitParts(cutInfo.zc)):[{name:'marble-coaster.stl',data:stlBinary(geoms)}];
+  const z=zip([...files,{name:'design.json',data:new TextEncoder().encode(designJSON())},{name:'README.txt',data:readme}]);
+  save('marble-coaster.zip',z,split?'Saved. Unzip it to find the bottom and top STL files.':'Saved. Unzip it to find marble-coaster.stl.');
+});
+$('dlJson').addEventListener('click',()=>save('marble-coaster-design.json',designJSON(),'Design saved. Load it again with Open design.'));
+$('loadJson').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.pts))throw 0;
+    for(const k of Object.keys(S))if(k in d&&k!=='pts')S[k]=d[k];
+    S.pts=d.pts.filter(p=>isFinite(p.x)&&isFinite(p.y)&&isFinite(p.z)).map(p=>{const q={x:+p.x,y:+p.y,z:+p.z};if(p.fx&&(p.fx.type==='jump'||p.fx.type==='funnel'))q.fx=Object.assign({},p.fx);return q;});
+    sel=-1;syncInputs();changed();setTimeout(fitView,30);msg('Design loaded.');
+  }catch(err){msg('Couldn’t read that file. Choose a JSON made with Save design.');}};
+  r.readAsText(f);e.target.value='';
+});
+
+/* ---------- draft ---------- */
+function saveDraft(){try{localStorage.setItem('marble-coaster-draft-en',designJSON());}catch(e){}}
+function loadDraft(){try{const d=JSON.parse(localStorage.getItem('marble-coaster-draft-en')||'null');if(d&&Array.isArray(d.pts)&&d.pts.length>=2){for(const k of Object.keys(S))if(k in d)S[k]=d[k];return true;}}catch(e){}return false;}
+
+/* ---------- boot ---------- */
+if(!loadDraft())S.pts=samplePts();
+syncInputs();
+new ResizeObserver(()=>{const pal=palette();drawPlan(pal);drawProfile(pal);}).observe(plan);
+new ResizeObserver(()=>{const pal=palette();drawProfile(pal);}).observe(prof);
+const mq=window.matchMedia('(prefers-color-scheme: dark)');
+const reTheme=()=>update(true);
+mq.addEventListener&&mq.addEventListener('change',reTheme);
+new MutationObserver(reTheme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+resize3d();
+update(true);
+fitView();
+requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
